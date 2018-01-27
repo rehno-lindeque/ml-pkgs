@@ -20,7 +20,7 @@ let
   };
   # # used for creating annotations
   # imageNetUtils =
-  #   pkgs.callPackage ./imagenet-utils.nix {
+  #   pkgs.callPackage ../imagenet-utils/default.nix {
   #     python = pkgs.python2;
   #     pythonPackages = pkgs.python2Packages;
   #   };
