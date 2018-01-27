@@ -4,6 +4,8 @@ This is a collection of nix expressions that I've been using to explore a bunch 
 
 Don't expect a high quality set of nix expressions here (at least not for the time being), instead this is a super low friction repo for quickly commiting ML/data science related expressions.
 
+There might also be the occasional computer graphics tool in here, e.g. for stitching images. Basically, anything goes.
+
 ## Contributing
 
 Note that commit access might be automatically handed out for submitting 1 or 2 succesfull PRs and also revoked for any reason, or no reason at all.
