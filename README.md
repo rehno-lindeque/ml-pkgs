@@ -18,4 +18,4 @@ Submit serious work to directly to NixOS/nixpkgs, this repo is for experimentati
 
 ## License
 
-Identical to nixpkgs in order to make it easy to pull stuff across: expressions are MIT licensed but packages installed by the expressions are under their own licenses.
+Identical to nixpkgs in order to make it easy to pull stuff across: expressions are MIT licensed (except where it is fetched from some other location, e.g. via `fetchurl`) but packages installed by the expressions are under their own licenses.
