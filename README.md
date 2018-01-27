@@ -6,6 +6,10 @@ Don't expect a high quality set of nix expressions here (at least not for the ti
 
 There might also be the occasional computer graphics tool in here, e.g. for stitching images. Basically, anything goes.
 
+## Usage
+
+This is not yet an overlay, for the time being just run `nix-build -E 'import <nixpkgs> {}; callPackage ./. {}'` in whichever directory you're interested in.
+
 ## Contributing
 
 Note that commit access might be automatically handed out for submitting 1 or 2 succesfull PRs and also revoked for any reason, or no reason at all.
