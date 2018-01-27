@@ -25,7 +25,7 @@ let
   #     pythonPackages = pkgs.python2Packages;
   #   };
   # labelimg =
-  #   pkgs.callPackage ./labelimg.nix {
+  #   pkgs.callPackage ./labelimg/default.nix {
   #     python = pkgs.python2;
   #     pythonPackages = pkgs.python2Packages;
   #   };
