@@ -8,7 +8,7 @@ There might also be the occasional computer graphics tool in here, e.g. for stit
 
 ## Usage
 
-This is not yet an overlay, for the time being just run `nix-build -E 'import <nixpkgs> {}; callPackage ./. {}'` in whichever directory you're interested in.
+This is not yet an overlay, for the time being just run `nix-build -E 'with import <nixpkgs> {}; callPackage ./. {}'` in whichever directory you're interested in.
 
 ## Contributing
 
