@@ -47,8 +47,10 @@ pkgs.stdenv.mkDerivation {
         echo
         echo 'Example usage:'
         echo
-
+        echo 'Using downloaded weights
+        echo
         echo '  flow --model cfg/v1/yolo-tiny.cfg --load download/yolo-tiny.weights'
+
         # echo '  # 1. Load tiny-yolo.weights'
         # echo '  flow --model cfg/tiny-yolo.cfg --load download/tiny-yolo.weights'
         # echo '  '
@@ -58,9 +60,12 @@ pkgs.stdenv.mkDerivation {
         # echo '  # 3. It is useful to reuse the first identical layers of tiny for `yolo-new`'
         # echo '  flow --model cfg/yolo-new.cfg --load download/tiny-yolo.weights'
         # echo '  # this will print out which layers are reused, which are initialized'
+
         echo
-        echo 'Experiment:'
-        echo '  flow --imgdir sample-data/large-color --model cfg/v1/yolo-tiny.cfg --annotation sample-data/large-color'
+        echo 'Using a pascal dataset:'
+        echo
+        echo '  flow --imgdir $PATH_TO_PASCAL_DATASET/JPEGImages --model cfg/v1/yolo-tiny.cfg --annotation $PATH_TO_PASCAL_DATASET/Annotations'
+        echo
 
         # if [ ! -d ./download ]; then
         #   mkdir ./download
@@ -76,5 +81,6 @@ pkgs.stdenv.mkDerivation {
         #   fi
         #   echo "Done"
         # fi
+
         '';
   }
