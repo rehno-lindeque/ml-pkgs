@@ -1,0 +1,5 @@
+examples/
+inference_model.h5
+logs/
+pascal_voc_classes.patch
+snapshots/
