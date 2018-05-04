@@ -19,3 +19,25 @@ Submit serious work to directly to NixOS/nixpkgs, this repo is for experimentati
 ## License
 
 Identical to nixpkgs in order to make it easy to pull stuff across: expressions are MIT licensed (except where it is fetched from some other location, e.g. via `fetchurl`) but packages installed by the expressions are under their own licenses.
+
+## Additional hints
+
+### Working with your own datasets
+
+You may notice that the usage help prints the following sorts of messages:
+
+    retinanet-train pascal $PATH_TO_PASCAL_DATASET
+
+My personal strategy for managing my paths is to create a .envrc file in the root of this repo which looks like this:
+
+    PATH_TO_PASCAL_DATASET=/path/to/my/pascal/dataset
+
+Then you can simply run
+
+    source ../../.envrc
+    retinanet-train pascal $PATH_TO_PASCAL_DATASET
+
+without needing to remember where in the world you put that pesky dataset (or any other parameters).
+
+It is also possible to use [direnv](https://direnv.net/) for this purpose.
+
