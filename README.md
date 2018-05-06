@@ -10,6 +10,8 @@ There might also be the occasional computer graphics tool in here, e.g. for stit
 
 This is not yet an overlay, for the time being just run `nix-build -E 'with import <nixpkgs> {}; callPackage ./. {}'` in whichever directory you're interested in.
 
+Alternatively some packages come with a `shell.nix` file. `shell.nix` files are normally used to describe development environments for a package, but in this repo we are just (ab-)using them for some convenient sandbox environments with usage info, and other helpful modifications. Simply run `nix-shell` in the package directory to get started.
+
 ## Contributing
 
 Note that commit access might be automatically handed out for submitting 1 or 2 succesfull PRs and also revoked for any reason, or no reason at all.
