@@ -1,19 +1,20 @@
-{ pkgs ? import <nixpkgs> {}
+{ makeWrapper
+, fetchFromGitHub
 , python
-, pythonPackages
+, buildPythonApplication
+, pillow, pyqt4, numpy, opencv, lxml
 }:
 
 let
 
-  toPythonLibPath = (m: "${m}/lib/${python.libPrefix}/site-packages");
-  pythonDeps = with pythonPackages; [ pyqt4 numpy opencv lxml ];
+  pythonDeps = [ pyqt4 numpy opencv lxml ];
 
 in
 
-pythonPackages.buildPythonApplication rec {
+buildPythonApplication rec {
   version = "dev";
   name = "labelImg-${version}";
-  src = pkgs.fetchFromGitHub {
+  src = fetchFromGitHub {
     owner = "tzutalin";
     repo = "labelImg";
     rev = "821ffae6b9f55786b792765ef0cbe2652a4285a9";
@@ -35,6 +36,6 @@ pythonPackages.buildPythonApplication rec {
 
   doCheck = false;
 
-  buildInputs = with pkgs; with pythonPackages; [ makeWrapper pillow ] ++ pythonDeps;
+  buildInputs = [ makeWrapper pillow ] ++ pythonDeps;
   propagatedBuildInputs = [ python ];
 }
