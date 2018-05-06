@@ -10,7 +10,7 @@ There might also be the occasional computer graphics tool in here, e.g. for stit
 
 This is not yet an overlay, for the time being just run `nix-build -E 'with import <nixpkgs> {}; callPackage ./. {}'` in whichever directory you're interested in.
 
-Alternatively some packages come with a `shell.nix` file. `shell.nix` files are normally used to describe development environments for a package, but in this repo we are just (ab-)using them for some convenient sandbox environments with usage info, and other helpful modifications. Simply run `nix-shell` in the package directory to get started.
+Some packages come with a `sandbox.nix` file. The `nix-shell` tool is normally used to describe development environments for a package, but in this repo we (ab-)use it to create sandbox environments with usage info, and other helpful modifications. Simply run `nix-shell sandbox.nix` in a package directory with this file to get going.
 
 ## Contributing
 
@@ -26,7 +26,7 @@ Identical to nixpkgs in order to make it easy to pull stuff across: expressions 
 
 ### Working with your own datasets
 
-You may notice that the usage help prints the following sorts of messages:
+You may notice that `sandbox.nix` usage help prints the following sorts of messages:
 
     retinanet-train pascal $PATH_TO_PASCAL_DATASET
 

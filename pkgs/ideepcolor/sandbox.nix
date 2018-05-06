@@ -1,4 +1,4 @@
-{ pkgs ? import <nixpkgs> { overlays = [ (import ../../shell-overlays.nix) ]; }
+{ pkgs ? import <nixpkgs> { overlays = [ (import ../../sandbox-overlays.nix) ]; }
 }:
 
 let
@@ -9,7 +9,7 @@ let
     };
 in
 pkgs.stdenv.mkDerivation {
-    name = "ideepcolor-environment";
+    name = "ideepcolor-sandbox";
     version = "0.0.0";
     buildInputs =
       # Nix shell dependencies
@@ -41,9 +41,9 @@ pkgs.stdenv.mkDerivation {
         ''
         echo ""
         printf "${white}"
-        echo "-----------------------------------------"
-        echo "Interactive Deep Colorization environment"
-        echo "-----------------------------------------"
+        echo "-------------------------------------------------"
+        echo "Interactive Deep Colorization sandbox environment"
+        echo "-------------------------------------------------"
         printf "${nc}"
         echo
         # TODO: fetch_models has to be extracted from the source now actually

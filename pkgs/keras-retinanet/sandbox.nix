@@ -1,4 +1,4 @@
-{ pkgs ? import <nixpkgs> { overlays = [ (import ../../shell-overlays.nix) ]; }
+{ pkgs ? import <nixpkgs> { overlays = [ (import ../../sandbox-overlays.nix) ]; }
 }:
 
 let
@@ -52,7 +52,7 @@ let
   });
 in
   pkgs.stdenv.mkDerivation {
-    name = "keras-retinanet-environment";
+    name = "keras-retinanet-sandbox";
     version = "0.0.0";
     buildInputs =
       # Nix shell dependencies
@@ -84,9 +84,9 @@ in
         ''
         echo ""
         printf "${white}"
-        echo "--------------------"
-        echo "keras-retinanet environment"
-        echo "--------------------"
+        echo "-----------------------------------"
+        echo "keras-retinanet sandbox environment"
+        echo "-----------------------------------"
         printf "${nc}"
         echo
         echo 'Example usage:'

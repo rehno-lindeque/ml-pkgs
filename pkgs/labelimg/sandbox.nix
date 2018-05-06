@@ -1,11 +1,11 @@
-{ pkgs ? import <nixpkgs> { overlays = [ (import ../../shell-overlays.nix) ]; }
+{ pkgs ? import <nixpkgs> { overlays = [ (import ../../sandbox-overlays.nix) ]; }
 }:
 
 let
   drv = pkgs.python2Packages.callPackage ./default.nix {};
 in
   pkgs.stdenv.mkDerivation {
-    name = "labelImg-environment";
+    name = "labelImg-sandbox";
     version = "0.0.0";
     buildInputs =
       # Nix shell dependencies
@@ -36,9 +36,9 @@ in
         ''
         echo ""
         printf "${white}"
-        echo "--------------------"
-        echo "labelImg environment"
-        echo "--------------------"
+        echo "----------------------------"
+        echo "labelImg sandbox environment"
+        echo "----------------------------"
         printf "${nc}"
         echo
         echo 'Example usage:'
