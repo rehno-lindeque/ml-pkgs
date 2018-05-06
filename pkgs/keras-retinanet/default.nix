@@ -7,7 +7,6 @@
 let
   keras-retinanet =
     (pythonPackages.buildPythonPackage rec {
-    # pythonPackages.mkPythonDerivation rec {
       version = "dev";
       name = "keras-retinanet-${version}";
       src = fetchFromGitHub {

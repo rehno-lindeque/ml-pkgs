@@ -10,7 +10,7 @@ let
 
 in
 
-pythonPackages.mkPythonDerivation rec {
+pythonPackages.buildPythonApplication rec {
   version = "dev";
   name = "labelImg-${version}";
   src = pkgs.fetchFromGitHub {

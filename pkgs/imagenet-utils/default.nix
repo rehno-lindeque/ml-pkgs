@@ -1,6 +1,7 @@
 { pkgs ? import <nixpkgs> {}
 , python
 , pythonPackages
+, mkPythonDerivation
 }:
 
 let
@@ -12,9 +13,9 @@ let
 
 in
 
-# pythonPackages.buildPythonPackage rec {
-pythonPackages.mkPythonDerivation rec {
+# pythonPackages.buildPythonApplication rec {
 # pkgs.stdenv.mkDerivation rec {
+mkPythonDerivation rec {
   version = "dev";
   name = "ImageNet_Utils-${version}";
   src = pkgs.fetchFromGitHub {

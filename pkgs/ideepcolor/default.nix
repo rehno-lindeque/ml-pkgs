@@ -14,8 +14,7 @@ let
 
   # used for creating annotations
   ideepcolor =
-    # pythonPackages.buildPythonPackage rec {
-    pythonPackages.mkPythonDerivation rec {
+    pythonPackages.buildPythonApplication rec {
       version = "dev";
       name = "ideepcolor-${version}";
       src = pkgs.fetchFromGitHub {

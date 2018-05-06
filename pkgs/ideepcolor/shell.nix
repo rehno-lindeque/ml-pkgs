@@ -1,11 +1,12 @@
-{ pkgs ? import <nixpkgs> {}
+{ pkgs ? import <nixpkgs> { overlays = [ (import ../../shell-overlays.nix) ]; }
 }:
 
 let
-  drv = pkgs.callPackage ./default.nix {
-    python = pkgs.python2;
-    pythonPackages = pkgs.python2Packages;
-  };
+  drv =
+    pkgs.pythonPackages.callPackage ./default.nix {
+      python = pkgs.python2;
+      pythonPackages = pkgs.python2Packages;
+    };
 in
 pkgs.stdenv.mkDerivation {
     name = "ideepcolor-environment";
