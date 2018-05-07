@@ -17,8 +17,8 @@ buildPythonApplication rec {
   src = fetchFromGitHub {
     owner = "tzutalin";
     repo = "labelImg";
-    rev = "821ffae6b9f55786b792765ef0cbe2652a4285a9";
-    sha256 = "1nb153adx0crw9pfzpvrnc730fnfjjgyg2ygp2z692yaza7a3rr8";
+    rev = "a7fc85270fa1cb34afdc2da1f17fe17f6798e5a1";
+    sha256 = "0bjwbxxd8qf7424pv6sz91ysfwsq85bg8rbf006nxfrhcvgjb3gq";
   };
 
   pythonPath = pythonDeps;
