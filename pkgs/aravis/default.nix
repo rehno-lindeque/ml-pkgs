@@ -4,12 +4,12 @@
 
 stdenv.mkDerivation rec {
   pname = "aravis";
-  version = "0.5.10";
+  version = "0.5.13";
   name = "${pname}-${version}";
 
   src = fetchurl {
-    url = https://github.com/AravisProject/aravis/archive/ARAVIS_0_5_10.tar.gz;
-    sha256 = "1yj993ki7z3451ary765284jxwh2hrcrihdm0b9rpjdp361inwq0";
+    url = https://github.com/AravisProject/aravis/archive/ARAVIS_0_5_13.tar.gz;
+    sha256 = "1dh9a4xxy78sxbcg7dyh7p4k9j31l4g510138z0cv0rh2xamilkd";
   };
 
   nativeBuildInputs = [
