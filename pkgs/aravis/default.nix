@@ -1,6 +1,23 @@
 { stdenv, fetchurl, autoreconfHook, pkgconfig, gtk_doc, intltool
-, glib, libxml2
+, audit, glib, libusb, libxml2
+, wrapGAppsHook
+, gst_all ? null
+, libnotify ? null
+, gnome3 ? null
+, enableUsb ? true
+, enablePacketSocket ? true
+, enableViewer ? true
+, enableGstPlugin ? true
+, enableCppTest ? false
+, enableFastHeartbeat ? false
+, enableAsan ? false
 }:
+
+assert enableGstPlugin -> gst_all != null;
+assert enableViewer -> enableGstPlugin;
+assert enableViewer -> stdenv.lib.versionAtLeast (stdenv.lib.getVersion gst_all.gstreamer) "1.0";
+assert enableViewer -> libnotify != null;
+assert enableViewer -> gnome3 != null;
 
 stdenv.mkDerivation rec {
   pname = "aravis";
@@ -13,17 +30,37 @@ stdenv.mkDerivation rec {
   };
 
   nativeBuildInputs = [
-    autoreconfHook pkgconfig gtk_doc intltool
-    glib libxml2
-  ];
+    autoreconfHook
+    pkgconfig
+    intltool
+    gtk_doc
+  ] ++ stdenv.lib.optional enableViewer wrapGAppsHook;
 
-  preConfigure = ''
-    ./autogen.sh
-  '';
+  buildInputs =
+    with gst_all;
+    [ glib libxml2 ]
+    ++ stdenv.lib.optional enableUsb libusb
+    ++ stdenv.lib.optional enablePacketSocket audit
+    ++ stdenv.lib.optionals (enableViewer || enableGstPlugin) [ gstreamer gst-plugins-base gst-plugins-good gst-plugins-bad ]
+    ++ stdenv.lib.optionals (enableViewer) [ libnotify gnome3.gtk3 gnome3.defaultIconTheme ];
+
+  preAutoreconf = ''./autogen.sh'';
+
+  configureFlags =
+    stdenv.lib.optional enableUsb "--enable-usb"
+      ++ stdenv.lib.optional enablePacketSocket "--enable-packet-socket"
+      ++ stdenv.lib.optional enableViewer "--enable-viewer"
+      ++ stdenv.lib.optional enableGstPlugin
+      (if gst_all != null && stdenv.lib.versionAtLeast (stdenv.lib.getVersion gst_all.gstreamer) "1.0"
+          then "--enable-gst-plugin"
+          else "--enable-gst-0.10-plugin")
+      ++ stdenv.lib.optional enableCppTest "--enable-cpp-test"
+      ++ stdenv.lib.optional enableFastHeartbeat "--enable-fast-heartbeat"
+      ++ stdenv.lib.optional enableAsan "--enable-asan";
 
   postPatch = ''
-    ln -s ${gtk_doc}/share/gtk-doc/data/gtk-doc.make .
-  '';
+      ln -s ${gtk_doc}/share/gtk-doc/data/gtk-doc.make .
+    '';
 
   doCheck = true;
 
