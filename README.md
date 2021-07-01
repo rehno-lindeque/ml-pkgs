@@ -6,6 +6,15 @@ Don't expect a high quality set of nix expressions here (at least not for the ti
 
 There might also be the occasional computer graphics tool in here, e.g. for stitching images. Basically, anything goes.
 
+## Setup with CUDA
+
+If you would like to use cuda (usually necessary for practical purposes), first download cudnn from https://developer.nvidia.com/rdp/cudnn-download.
+
+Then add it to the nix store as follows:
+
+    nix-store --add-fixed sha256 cudnn-9.1-linux-x64-v7.1.tgz
+    nix-prefetch-url file://$PWD/cudnn-9.1-linux-x64-v7.1.tgz
+
 ## Usage
 
 This is not yet an overlay, for the time being just run `nix-build -E 'with import <nixpkgs> {}; callPackage ./. {}'` in whichever directory you're interested in.
@@ -42,4 +51,12 @@ Then you can simply run
 without needing to remember where in the world you put that pesky dataset (or any other parameters).
 
 It is also possible to use [direnv](https://direnv.net/) for this purpose.
+
+## See also
+
+It may be worth checking out
+
+* [AWS EC2 GPU cluster with NixOps (Tesla V100 node x4)](https://www.youtube.com/watch?v=pfaRECFJnak)
+* [ec2-gpu-cluster-with-NixOps](https://github.com/hyphon81/ec2-gpu-cluster-with-NixOps) with accompanying [video](https://www.youtube.com/watch?v=miwTwKCBqoM)
+* This [presentation](https://github.com/Tokyo-NixOS/presentations/tree/master/2017/06/machine-learning)
 

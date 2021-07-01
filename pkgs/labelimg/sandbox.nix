@@ -43,7 +43,7 @@ in
         echo
         echo 'Example usage:'
         echo
-        echo '  labelImg.py $PATH_TO_IMAGE $PATH_TO_PASCAL_CLASSES'
+        echo '  labelImg.py "$PATH_TO_PASCAL_DATASET/JPEGImages" $PATH_TO_PREDEFINED_CLASSES'
         echo
         '';
   }

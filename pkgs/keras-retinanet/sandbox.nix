@@ -2,10 +2,18 @@
 }:
 
 let
-  drv = pkgs.callPackage ./default.nix {
-    python = pkgs.python3;
-    pythonPackages = pkgs.python3Packages;
-    keras-resnet = pkgs.callPackage ../keras-resnet/default.nix { python = pkgs.python3; pythonPackages = pkgs.python3Packages; };
+
+  # inherit (import <nixpkgs> {}) fetchFromGitHub;
+  # pkgs = import (fetchFromGitHub {
+  #     owner = "NixOS";
+  #     repo = "nixpkgs-channels";
+  #     rev = "9d0b6b9dfc92a2704e2111aa836f5bdbf8c9ba42";
+  #     sha256 = "0000000000000000000000000000000000000000000000000000";
+  #   })
+  #   { config.allowUnfree = true; overlays = [ (import ../../sandbox-overlays.nix) ] };
+
+  drv = pkgs.python3Packages.callPackage ./default.nix {
+    keras-resnet = pkgs.python3Packages.callPackage ../keras-resnet/default.nix {};
   };
 
   drvPatched = drv.overrideDerivation (oldAttrs: {
@@ -91,7 +99,7 @@ in
         echo
         echo 'Example usage:'
         echo
-        echo 'Train your own dataset: (hint: start out simple)'
+        echo 'Train your own dataset: (hint: start out simple and look at  https://github.com/fizyr/keras-retinanet-test-data)'
         echo
         echo '  retinanet-train --steps 1000 pascal $PATH_TO_PASCAL_DATASET'
         echo '  retinanet-convert-model ./snapshots/resnet50_pascal_50.h5 inference_model.h5'

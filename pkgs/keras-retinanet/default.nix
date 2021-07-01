@@ -1,12 +1,12 @@
 { fetchFromGitHub
+, buildPythonPackage
 , python
-, pythonPackages
-, keras-resnet
+, tensorflow, Keras, six, scipy, opencv3, pillow, h5py, keras-resnet
 }:
 
 let
   keras-retinanet =
-    (pythonPackages.buildPythonPackage rec {
+    (buildPythonPackage rec {
       version = "dev";
       name = "keras-retinanet-${version}";
       src = fetchFromGitHub {
@@ -16,18 +16,17 @@ let
         sha256 = "0n10mwingnpqaqk0s84y3sp7fkyjxmz9lizqr98ag3vfb3lac7h6";
       };
       propagatedBuildInputs =
-        (with pythonPackages; [
+        [
+          python
           tensorflow
           Keras
           six
           scipy
+          # opencv3WithoutCuda
           opencv3
           pillow
           h5py
-        ])
-        ++ [
           keras-resnet
-          python
         ];
       doCheck = false;
     });

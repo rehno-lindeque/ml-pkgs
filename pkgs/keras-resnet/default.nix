@@ -1,9 +1,10 @@
 { fetchFromGitHub
+, buildPythonPackage
 , python
-, pythonPackages
+, tensorflow, Keras
 }:
 
-pythonPackages.buildPythonPackage rec {
+buildPythonPackage rec {
   version = "dev";
   name = "keras-retinanet-${version}";
   src = fetchFromGitHub {
@@ -13,12 +14,10 @@ pythonPackages.buildPythonPackage rec {
     sha256 = "0qyzbyyy7lv0g1lbhllc71gs0n09if9b34hvdsh2y9ynfzd9l8sw";
   };
   propagatedBuildInputs =
-    (with pythonPackages; [
+    [
+      python
       tensorflow
       Keras
-    ])
-    ++ [
-      python
     ];
   doCheck = false;
 }
