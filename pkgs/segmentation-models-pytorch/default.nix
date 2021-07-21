@@ -19,6 +19,13 @@ buildPythonPackage rec {
     sha256 = "1s0mx1bsbg51v02fy6x72nif20c5zh76zs35v9gb9vzjp32c8nry";
   };
 
+  # postPatch = ''
+  #   model_zoo.load_url
+  #       encoder.load_state_dict(model_zoo.load_url(settings["url"]))
+  #  substituteInPlace "" \
+  #      --replace 'model_zoo.load_url(settings["url"])' ''
+  # '';
+
   propagatedBuildInputs = [ torchvision efficientnet-pytorch timm ];
 
   meta = {

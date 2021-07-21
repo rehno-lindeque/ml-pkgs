@@ -86,11 +86,11 @@ mkPythonDerivation rec {
 
 #     # wrapProgram $out/bin/bbox_helper.py \
 #     #   --prefix PYTHONPATH : $PYTHONPATH:${pythonPackages.pillow}/$LIBSUFFIX/PIL:$PYDIR \
-#     #   --prefix PATH : ${pkgs.stdenv.lib.makeBinPath [ pkgs.curl ]}
+#     #   --prefix PATH : ${pkgs.lib.makeBinPath [ pkgs.curl ]}
 
 #     # wrapProgram $out/bin/bbox_helper.py \
 #     #   --prefix PYTHONPATH : $PYTHONPATH:${toPythonLibPath pythonPackages.pillow}:$PYDIR \
-#     #   --prefix PATH : ${pkgs.stdenv.lib.makeBinPath [ pkgs.curl ]}
+#     #   --prefix PATH : ${pkgs.lib.makeBinPath [ pkgs.curl ]}
 
 #     # This mimics ../../../development/interpreters/python/wrap.sh (?)
 #     # wrapPythonProgramsIn "$out/bin" "$out $pythonPath"
@@ -170,7 +170,7 @@ mkPythonDerivation rec {
 
   # postInstall = ''
   #   wrapProgram $out/bin/bbox_helper \
-  #     --prefix PATH : ${pkgs.stdenv.lib.makeBinPath [ pythonPackages.pillow ]}
+  #     --prefix PATH : ${pkgs.lib.makeBinPath [ pythonPackages.pillow ]}
   # '';
   # postInstall = ''
   #  mkdir -p $out/bin
@@ -183,7 +183,7 @@ mkPythonDerivation rec {
   #  cp -R *.py pylrs $PYDIR
   #   wrapProgram $out/bin/bbox_helper \
   #     --prefix PYTHONPATH : $PYTHONPATH:${pythonPackages.pillow}/$LIBSUFFIX/PIL:$PYDIR \
-  #     --prefix PATH : ${pkgs.stdenv.lib.makeBinPath [ pkgs.curl ]}
+  #     --prefix PATH : ${pkgs.lib.makeBinPath [ pkgs.curl ]}
   # '';
 
 

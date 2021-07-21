@@ -49,14 +49,14 @@ stdenv.mkDerivation rec {
   #   "-DINSTALL_C_EXAMPLES=${enabled installCExamples}"
   #   "-DINSTALL_PYTHON_EXAMPLES=${enabled installPythonExamples}"
   #   "-DBUILD_EXAMPLES=${enabled buildExamples}"
-  # ] ++ stdenv.lib.optionals enableContrib [ "-DOPENCV_EXTRA_MODULES_PATH=${contribSrc}/modules" ];
+  # ] ++ lib.optionals enableContrib [ "-DOPENCV_EXTRA_MODULES_PATH=${contribSrc}/modules" ];
 
   enableParallelBuilding = true;
 
   meta = {
     description = "Automatic Panorama Stitching From Scratch";
     homepage = https://github.com/ppwwyyxx/OpenPano;
-    license = stdenv.lib.licenses.mit;
-    maintainers = with stdenv.lib.maintainers; [];
+    license = lib.licenses.mit;
+    maintainers = with lib.maintainers; [];
   };
 }
