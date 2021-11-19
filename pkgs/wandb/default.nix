@@ -22,13 +22,13 @@
 
 buildPythonPackage rec {
   pname = "wandb";
-  version = "0.12.4";
+  version = "0.12.6";
 
   src = fetchFromGitHub {
     owner = pname;
     repo = "client";
     rev = "v${version}";
-    sha256 = "1dy6nbkblgqa7yr4m0nd2yaq3q1jjnxzsqmlyac8y0fpp6s4f2x5";
+    sha256 = "0prmg3az1yzwn0nmdir7vw6nzpdfmwflyba0yny4x0r4zc4p4jjr";
   };
 
   # The wandb requirements.txt does not distinguish python2/3 dependencies. We
