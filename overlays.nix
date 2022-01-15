@@ -7,6 +7,7 @@ let
     einops = pythonFinal.callPackage ./pkgs/einops {};
     ideepcolor = pythonFinal.callPackage ./pkgs/ideepcolor  {};
     imagenet-utils = pythonFinal.callPackage ./pkgs/imagenet-utils  {};
+    keras = pythonFinal.callPackage ./pkgs/keras {};
     keras-resnet = pythonFinal.callPackage ./pkgs/keras-resnet  {};
     keras-retinanet = pythonFinal.callPackage ./pkgs/keras-retinanet  {};
     kornia = pythonFinal.callPackage ./pkgs/kornia {};
