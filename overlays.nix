@@ -1,6 +1,15 @@
 let
+  # Inputs that cannot be specified in the flake inputs schema (e.g. single file urls)
+  additionalInputs = {
+    amazon-s3-plugin-for-pytorch = builtins.fetchurl {
+      url = https://raw.githubusercontent.com/NixOS/nixpkgs/835b9f2b58277fac67eb96b5ab2d21f2315295e6/pkgs/development/python-modules/amazon-s3-plugin-for-pytorch/default.nix;
+      sha256 = "1v4xs6abb1wlrccb4a8r71l355hg86xhwm8ilc8vly2p15vryxnv";
+    };
+  };
+
   pythonOverrides = final: prev: {
     albumentations = final.callPackage ./pkgs/albumentations {};
+    amazon-s3-plugin-for-pytorch = final.callPackage additionalInputs.amazon-s3-plugin-for-pytorch {};
     aravis = final.callPackage ./pkgs/aravis  {};
     darkflow = final.callPackage ./pkgs/darkflow  {};
     efficientnet-pytorch = final.callPackage ./pkgs/efficientnet-pytorch  {};

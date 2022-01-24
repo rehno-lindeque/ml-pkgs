@@ -28,6 +28,7 @@
 
       packages = {
         inherit (pkgs.python3Packages)
+          amazon-s3-plugin-for-pytorch
           albumentations
           # aravis
           # darkflow
