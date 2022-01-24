@@ -1,21 +1,26 @@
 { pkgs ? import <nixpkgs> {}
 , python
-, pythonPackages
-, mkPythonDerivation
+# , pythonPackages
+, buildPythonPackage
+, pyqt4
+, numpy
+, opencv
+, lxml
 }:
 
 let
 
   toPythonLibPath = (m: "${m}/lib/${python.libPrefix}/site-packages");
 
-  pythonDeps = with pythonPackages; [ pyqt4 numpy opencv lxml ];
+  # pythonDeps = with pythonPackages; [ pyqt4 numpy opencv lxml ];
   # pythonDeps = with pythonPackages; [ pyqt4 numpy imread ];
 
 in
 
 # pythonPackages.buildPythonApplication rec {
 # pkgs.stdenv.mkDerivation rec {
-mkPythonDerivation rec {
+# mkPythonDerivation rec {
+buildPythonPackage rec {
   version = "dev";
   name = "ImageNet_Utils-${version}";
   src = pkgs.fetchFromGitHub {
@@ -30,7 +35,8 @@ mkPythonDerivation rec {
   # pythonPath = with pythonPackages; [ dbus-python pygobject3 pycairo ];
   # pythonPath = with pythonPackages; [ pillow ];
   # pythonPath = pythonDeps; #  ++ [ "${src}/labelImgGUI/libs" ];
-  pythonPath = pythonDeps; # ++ [ "$gui/lib" ];
+  # pythonPath = pythonDeps; # ++ [ "$gui/lib" ];
+
 
 
   # propagatedUserEnvPkgs = [ obex_data_server ];
@@ -212,7 +218,7 @@ mkPythonDerivation rec {
   # '';
   # buildInputs = [ pkgs.makeWrapper python pythonPackages.pillow ];
   # buildInputs = [ pkgs.makeWrapper ] ++ pythonPath;
-  buildInputs = with pkgs; with pythonPackages; [ makeWrapper pillow ] ++ pythonDeps;
-  propagatedBuildInputs = [ python ];
+  buildInputs = with pkgs; with pythonPackages; [ makeWrapper pillow ];
+  propagatedBuildInputs = [ python pyqt4 numpy opencv lxml ];
   # propagatedBuildInputs = with pythonPackages; [ python ];
 }

@@ -29,7 +29,7 @@ in buildPythonPackage {
 
   disabled = !(isPy37 || isPy38 || isPy39);
 
-  src = fetchurl srcs."${stdenv.system}-${pyVerNoDot}" or unsupported;
+  src = fetchurl srcs."${lib.traceVal stdenv.system}-${pyVerNoDot}" or unsupported;
 
   nativeBuildInputs = [
     addOpenGLRunpath
