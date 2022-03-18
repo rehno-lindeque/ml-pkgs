@@ -3,7 +3,7 @@ let
   additionalInputs = {
     amazon-s3-plugin-for-pytorch = builtins.fetchurl {
       url = https://raw.githubusercontent.com/NixOS/nixpkgs/835b9f2b58277fac67eb96b5ab2d21f2315295e6/pkgs/development/python-modules/amazon-s3-plugin-for-pytorch/default.nix;
-      sha256 = "1v4xs6abb1wlrccb4a8r71l355hg86xhwm8ilc8vly2p15vryxnv";
+      sha256 = "sha256:1v4xs6abb1wlrccb4a8r71l355hg86xhwm8ilc8vly2p15vryxnv";
     };
   };
 
@@ -24,9 +24,6 @@ let
     # numpy = final.callPackage ./pkgs/numpy  {};
     openpano = final.callPackage ./pkgs/openpano  {};
     pretrainedmodels = final.callPackage ./pkgs/pretrainedmodels  {};
-    pytorch-bin = final.callPackage ./pkgs/pytorch/bin.nix  {};
-    # pytorch = final.callPackage ./pkgs/pytorch {};
-    pytorch = final.pytorch-bin;
     qdarkstyle = final.callPackage ./pkgs/qdarkstyle  {};
     segmentation-models-pytorch = final.callPackage ./pkgs/segmentation-models-pytorch  {};
     timm = final.callPackage ./pkgs/timm  {};

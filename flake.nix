@@ -2,7 +2,7 @@
   description = "My collection of machine learning packages for nix";
 
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs?branch=nixos-21.11&rev=604c44137d97b5111be1ca5c0d97f6e24fbc5c2c";
+    nixpkgs.url = "github:rehno-lindeque/nixpkgs/pytorch-1.11.0"; # https://github.com/NixOS/nixpkgs/pull/164712
     flake-utils.url = "github:numtide/flake-utils";
   };
 
@@ -28,28 +28,30 @@
 
       packages = {
         inherit (pkgs.python3Packages)
-          amazon-s3-plugin-for-pytorch
           albumentations
-          # aravis
-          # darkflow
+          amazon-s3-plugin-for-pytorch
           efficientnet-pytorch
           einops
-          # ideepcolor
-          # imagenet-utils
           keras
           keras-resnet
           keras-retinanet
           kornia
+          pretrainedmodels
+          sacrebleu
+          wandb
+          yaspin
+
+          # known out of date relative to nixpkgs pin (or otherwise broken):
+          # aravis
+          # darkflow
+          # ideepcolor
+          # imagenet-utils
           # labelimg
           # openpano
-          pretrainedmodels
-          pytorch-bin
-          pytorch
           # qdarkstyle
           # segmentation-models-pytorch
           # timm
-          wandb
-          yaspin;
+          ;
       };
 
     }) // {
