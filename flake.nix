@@ -16,7 +16,11 @@
             inherit system;
             pkgs = import nixpkgs {
               inherit system;
-              config.allowUnfree = true;
+              config = {
+                allowUnfree = true;
+                cudaSupport = true;
+                cudnnSupport = true;
+              };
               overlays = [
                 self.overlays.python39
               ];
