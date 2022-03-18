@@ -36,12 +36,19 @@
           amazon-s3-plugin-for-pytorch
           efficientnet-pytorch
           einops
+          expecttest
           keras
           keras-resnet
           keras-retinanet
           kornia
           pretrainedmodels
+          # pytorch-bin
+          # pytorch-unstable
+          # pytorch-unstable-with-cuda
           sacrebleu
+          tensorflow-tensorboard
+          # torchaudio
+          # torchdata
           wandb
           yaspin
 
@@ -55,6 +62,8 @@
           # qdarkstyle
           # segmentation-models-pytorch
           # timm
+          # fairseq # doesn't build at the moment due to cmake version
+          # torchtext
           ;
       };
 
