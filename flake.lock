@@ -17,11 +17,11 @@
     },
     "nixpkgs": {
       "locked": {
-        "lastModified": 1647611227,
-        "narHash": "sha256-35QghkW6GrTQHvOa82osArl/J8gHr9wtJ1BG9/tFxXg=",
+        "lastModified": 1647630674,
+        "narHash": "sha256-+42rlX3oJgr/d8ldzVNqcEHFHFi4h/xBpxfzz+zD5kE=",
         "owner": "rehno-lindeque",
         "repo": "nixpkgs",
-        "rev": "ea8502186fc8bb0951f7552c8fa10fe9be03671f",
+        "rev": "2c200e7142f4644bca9c29bc49525cbd53c28450",
         "type": "github"
       },
       "original": {
