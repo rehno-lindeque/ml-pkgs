@@ -2,7 +2,7 @@
   description = "My collection of machine learning packages for nix";
 
   inputs = {
-    nixpkgs.url = "github:rehno-lindeque/nixpkgs/pytorch-1.11.0"; # https://github.com/NixOS/nixpkgs/pull/164712
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     flake-utils.url = "github:numtide/flake-utils";
   };
 

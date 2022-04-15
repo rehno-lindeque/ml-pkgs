@@ -17,16 +17,16 @@
     },
     "nixpkgs": {
       "locked": {
-        "lastModified": 1647630674,
-        "narHash": "sha256-+42rlX3oJgr/d8ldzVNqcEHFHFi4h/xBpxfzz+zD5kE=",
-        "owner": "rehno-lindeque",
+        "lastModified": 1649673231,
+        "narHash": "sha256-1T3AFscfS7s9pkFA+UIDrHH3/RLVjRdYs5ImuLYpOlE=",
+        "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "2c200e7142f4644bca9c29bc49525cbd53c28450",
+        "rev": "33772708c6d0e33f697426ba386aa0149cbcbecb",
         "type": "github"
       },
       "original": {
-        "owner": "rehno-lindeque",
-        "ref": "pytorch-1.11.0",
+        "owner": "nixos",
+        "ref": "nixos-unstable",
         "repo": "nixpkgs",
         "type": "github"
       }
