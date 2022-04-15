@@ -32,7 +32,6 @@
 
       packages = {
         inherit (pkgs.python3Packages)
-          albumentations
           amazon-s3-plugin-for-pytorch
           efficientnet-pytorch
           einops
@@ -50,6 +49,7 @@
           yaspin
 
           # known out of date relative to nixpkgs pin (or otherwise broken):
+          # albumentations
           # aravis
           # darkflow
           # ideepcolor
