@@ -129,32 +129,34 @@ let
       wandb = final.callPackage ./pkgs/wandb  {};
       yaspin = final.callPackage ./pkgs/yaspin  {};
 
+      # pytorch = final.pytorch-bin;
+      # torchvision = final.torchvision-bin;
+      # pytorch = final.pytorch-unstable;
 
       # Excluded for now:
       # torchvision = final.callPackage ./pkgs/torchvision  {};
       # numpy = final.callPackage ./pkgs/numpy  {};
     };
-
-
-  emptyOverrides = _: _: {};
-
-  packagesetOverlays =
-    builtins.mapAttrs
-      (key: packageOverrides: final: prev: {
-        "${key}" = prev."${key}".override {
-          self = final."${key}";
-          packageOverrides = final.lib.composeExtensions (prev."${key}".packageOverrides or emptyOverrides) packageOverrides;
-        };
-      })
-      {
-        python37 = pythonOverrides;
-        python38 = pythonOverrides;
-        python39 = pythonOverrides;
-        python310 = pythonOverrides;
-      };
 in
 {
-  inherit pythonOverrides;
-  inherit (packagesetOverlays) python37 python38 python39 python310;
+  default = final: prev: let lib = final.lib; in {
+    # Overriding python package sets is still messy in nixpkgs at the moment
+    python37 = prev.python37.override {
+      self = final.python37;
+      packageOverrides = _: _: prev.python37.pkgs.overrideScope pythonOverrides;
+    };
+    python38 = prev.python38.override {
+      self = final.python38;
+      packageOverrides = _: _: prev.python38.pkgs.overrideScope pythonOverrides;
+    };
+    python39 = prev.python39.override {
+      self = final.python39;
+      packageOverrides = _: _: prev.python39.pkgs.overrideScope pythonOverrides;
+    };
+    python310 = prev.python310.override {
+      self = final.python310;
+      packageOverrides = _: _: prev.python310.pkgs.overrideScope pythonOverrides;
+    };
+  };
 }
 
