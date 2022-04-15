@@ -5,11 +5,14 @@ let
       url = https://raw.githubusercontent.com/NixOS/nixpkgs/835b9f2b58277fac67eb96b5ab2d21f2315295e6/pkgs/development/python-modules/amazon-s3-plugin-for-pytorch/default.nix;
       sha256 = "sha256:1v4xs6abb1wlrccb4a8r71l355hg86xhwm8ilc8vly2p15vryxnv";
     };
-    # torchdata = builtins.fetchurl {
-    #   # https://github.com/NixOS/nixpkgs/pull/160213
-    #   url = https://raw.githubusercontent.com/NixOS/nixpkgs/0d35c273cb142da3dffd88644450dc247695e14b/pkgs/development/python-modules/torchdata/default.nix;
-    #   sha256 = "sha256:1vbqz260k17s6i46cyffik0bbrpd7q1ihjs10yzp3kg3v88v7mk8";
-    # };
+    pytorch-unstable = builtins.fetchurl {
+      url = https://raw.githubusercontent.com/rehno-lindeque/nixpkgs/f43cfcd81387c453ef74da55e098cd076885a2b2/pkgs/development/python-modules/pytorch/unstable.nix;
+      sha256 = "sha256:1fi41id5kmlviykqfrjlvm43dnlkd0155zvcr4aw2x756i2f6z5g";
+    };
+    torchdata-unstable = builtins.fetchurl {
+      url = https://raw.githubusercontent.com/rehno-lindeque/nixpkgs/f43cfcd81387c453ef74da55e098cd076885a2b2/pkgs/development/python-modules/torchdata/unstable.nix;
+      sha256 = "sha256:02c9nkfsj4aw16i6h2mhi1r7jd1i683qyn7pg1q6gnnhkfhjjkdx";
+    };
     expecttest = builtins.fetchurl {
       # https://github.com/NixOS/nixpkgs/pull/160197
       url = https://raw.githubusercontent.com/NixOS/nixpkgs/da2b767621fd538881e130d12ecdfdd3195727a3/pkgs/development/python-modules/expecttest/default.nix;
@@ -113,8 +116,8 @@ let
       openpano = final.callPackage ./pkgs/openpano  {};
       pretrainedmodels = final.callPackage ./pkgs/pretrainedmodels  {};
       # pytorch-bin = final.callPackage ./pkgs/pytorch/bin.nix {};
-      # pytorch-unstable = prev.pytorch.overridePythonAttrs override-pytorch-unstable;
-      # pytorch-unstable-with-cuda = final.pytorch-unstable.override { cudaSupport = true; MPISupport = true; };
+      pytorch-unstable = final.callPackage additionalInputs.pytorch-unstable { cudaSupport = true; };
+      torchdata-unstable = final.callPackage additionalInputs.torchdata-unstable {};
       qdarkstyle = final.callPackage ./pkgs/qdarkstyle  {};
       sacrebleu = final.callPackage additionalInputs.sacrebleu {};
       segmentation-models-pytorch = final.callPackage ./pkgs/segmentation-models-pytorch  {};
@@ -126,14 +129,9 @@ let
       wandb = final.callPackage ./pkgs/wandb  {};
       yaspin = final.callPackage ./pkgs/yaspin  {};
 
-      # We'll build our packages with python39 and pytorch-unstable in order to have a useful binary cache
-      # TODO: hopefully this will be a temporary situation
-      # pytorch = final.pytorch-unstable-with-cuda;
-      # pytorch = builtins.throw "Use pytorch with cuda to avoid needlessly rebuilding things";
 
       # Excluded for now:
       # torchvision = final.callPackage ./pkgs/torchvision  {};
-      # pytorch = final.callPackage ./pkgs/pytorch {};
       # numpy = final.callPackage ./pkgs/numpy  {};
     };
 

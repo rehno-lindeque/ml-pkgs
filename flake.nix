@@ -43,8 +43,8 @@
           pretrainedmodels
           sacrebleu
           tensorflow-tensorboard
-          # torchaudio
-          # torchdata
+          pytorch-unstable
+          torchdata-unstable
           wandb
           yaspin
 
