@@ -1,21 +1,21 @@
-{ buildPythonPackage
-, fetchPypi
-# , fetchurl
-, python
-, six
-, numpy
-, pillow
-, pytorch
-, lib
+{
+  buildPythonPackage,
+  fetchPypi,
+  # , fetchurl
+  python,
+  six,
+  numpy,
+  pillow,
+  pytorch,
+  lib,
 }:
-
 buildPythonPackage rec {
   # version = "0.2.1";
   # version = "0.6.1";
   # version = "0.8.1";
   # version = "0.7.0";
   version = "0.8.2";
-  pname   = "torchvision";
+  pname = "torchvision";
 
   format = "wheel";
 
@@ -30,7 +30,7 @@ buildPythonPackage rec {
   };
   # --editable
 
-  propagatedBuildInputs = [ six numpy pillow pytorch ];
+  propagatedBuildInputs = [six numpy pillow pytorch];
 
   postInstall = ''
     touch $out/${python.sitePackages}/torchvision/py.typed
@@ -38,8 +38,8 @@ buildPythonPackage rec {
 
   meta = {
     description = "PyTorch vision library";
-    homepage    = "https://pytorch.org/";
-    license     = lib.licenses.bsd3;
-    maintainers = with lib.maintainers; [ ericsagnes ];
+    homepage = "https://pytorch.org/";
+    license = lib.licenses.bsd3;
+    maintainers = with lib.maintainers; [ericsagnes];
   };
 }

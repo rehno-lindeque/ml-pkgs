@@ -1,12 +1,12 @@
-{ buildPythonPackage
-, fetchPypi
-, lib
-, packaging
-, pytest
-, pytest-runner
-, pytorch
+{
+  buildPythonPackage,
+  fetchPypi,
+  lib,
+  packaging,
+  pytest,
+  pytest-runner,
+  pytorch,
 }:
-
 buildPythonPackage rec {
   pname = "kornia";
   version = "0.6.1";
@@ -31,7 +31,7 @@ buildPythonPackage rec {
 
   doCheck = false; # test fails for unknown reason atm
 
-  pythonImportsCheck = [ "kornia" ];
+  pythonImportsCheck = ["kornia"];
 
   meta = with lib; {
     description = "Kornia is a differentiable library that allows classical computer vision to be integrated into deep learning models.";

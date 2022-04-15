@@ -1,15 +1,15 @@
-{ buildPythonPackage
-, fetchPypi
-, lib
-, pytorch
-, torchvision
-, tqdm
-, munch
+{
+  buildPythonPackage,
+  fetchPypi,
+  lib,
+  pytorch,
+  torchvision,
+  tqdm,
+  munch,
 }:
-
 buildPythonPackage rec {
   version = "0.7.4";
-  pname   = "pretrainedmodels";
+  pname = "pretrainedmodels";
 
   src = fetchPypi {
     inherit pname version;
@@ -18,12 +18,12 @@ buildPythonPackage rec {
 
   doCheck = false;
 
-  propagatedBuildInputs = [ tqdm pytorch torchvision munch ];
+  propagatedBuildInputs = [tqdm pytorch torchvision munch];
 
   meta = {
     description = "Pretrained models for Pytorch";
-    homepage    = "https://github.com/cadene/pretrained-models.pytorch";
-    license     = lib.licenses.mit;
+    homepage = "https://github.com/cadene/pretrained-models.pytorch";
+    license = lib.licenses.mit;
     maintainers = with lib.maintainers; [];
   };
 }

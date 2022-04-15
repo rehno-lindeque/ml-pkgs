@@ -1,10 +1,9 @@
-{ pkgs ? import <nixpkgs> {}
-, python
-, pythonPackages
-, opencv3
-}:
-
-let
+{
+  pkgs ? import <nixpkgs> {},
+  python,
+  pythonPackages,
+  opencv3,
+}: let
   opencv = opencv3.override {
     # enableIpp       =
     # enableContrib   =
@@ -29,25 +28,24 @@ let
   #     python = pkgs.python2;
   #     pythonPackages = pkgs.python2Packages;
   #   };
-  darkflow =
-    pythonPackages.buildPythonPackage rec {
-      # https://github.com/thtrieu/darkflow
-      # https://github.com/llSourcell/YOLO_Object_Detection
-      version = "dev";
-      name = "darkflow-${version}";
-      src = ./.;
-      propagatedBuildInputs = [
-        python pythonPackages.cython pythonPackages.tensorflow
-        opencv
-        # imageNetUtils
-      ];
-    };
-in
-  [
-    # imageNetUtils
-    # imageNetUtils.gui
-    # labelimg
-    # pkgs.python2
-    darkflow
-  ]
-
+  darkflow = pythonPackages.buildPythonPackage rec {
+    # https://github.com/thtrieu/darkflow
+    # https://github.com/llSourcell/YOLO_Object_Detection
+    version = "dev";
+    name = "darkflow-${version}";
+    src = ./.;
+    propagatedBuildInputs = [
+      python
+      pythonPackages.cython
+      pythonPackages.tensorflow
+      opencv
+      # imageNetUtils
+    ];
+  };
+in [
+  # imageNetUtils
+  # imageNetUtils.gui
+  # labelimg
+  # pkgs.python2
+  darkflow
+]

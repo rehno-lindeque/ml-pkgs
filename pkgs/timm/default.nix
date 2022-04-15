@@ -1,15 +1,15 @@
-{ buildPythonPackage
-, fetchPypi
-, lib
-, pytorch
-, torchvision
-, pretrainedmodels
+{
+  buildPythonPackage,
+  fetchPypi,
+  lib,
+  pytorch,
+  torchvision,
+  pretrainedmodels,
 }:
-
 buildPythonPackage rec {
   # version = "0.4.12";
   version = "0.3.2";
-  pname   = "timm";
+  pname = "timm";
   format = "wheel";
 
   src = fetchPypi {
@@ -20,13 +20,13 @@ buildPythonPackage rec {
     sha256 = "0xbq7346b5ggqd6xak34dgjjmmmqvh8li0vbba1khvi43kv8wnf1";
   };
 
-  propagatedBuildInputs = [ pytorch torchvision pretrainedmodels ];
+  propagatedBuildInputs = [pytorch torchvision pretrainedmodels];
   doCheck = false;
 
   meta = {
     description = "(Unofficial) PyTorch Image Models";
-    homepage    = "https://github.com/rwightman/pytorch-image-models";
-    license     = lib.licenses.asl20;
+    homepage = "https://github.com/rwightman/pytorch-image-models";
+    license = lib.licenses.asl20;
     maintainers = with lib.maintainers; [];
   };
 }

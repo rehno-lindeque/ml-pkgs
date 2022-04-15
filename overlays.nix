@@ -45,90 +45,88 @@ let
     };
   };
 
-  pythonOverrides = final: prev:
-    let
-      inherit (final.pkgs) fetchFromGitHub;
+  pythonOverrides = final: prev: let
+    inherit (final.pkgs) fetchFromGitHub;
 
-      # override-torchdata = oldAttrs: {
-      #   src = fetchFromGitHub {
-      #     owner = "pytorch";
-      #     repo = "data";
-      #     # rev = "v${version}";
-      #     rev = "e86cedc5ffd024ea293f541fc77e8a3b4856c8c9"; # git branch release/0.3.0
-      #     sha256 = "sha256:0vyfg7z180w8q6k85v241p1d9gnxq8gdkpvhmykyjf5hnr77cc4z";
-      #   };
+    # override-torchdata = oldAttrs: {
+    #   src = fetchFromGitHub {
+    #     owner = "pytorch";
+    #     repo = "data";
+    #     # rev = "v${version}";
+    #     rev = "e86cedc5ffd024ea293f541fc77e8a3b4856c8c9"; # git branch release/0.3.0
+    #     sha256 = "sha256:0vyfg7z180w8q6k85v241p1d9gnxq8gdkpvhmykyjf5hnr77cc4z";
+    #   };
 
-      #   doCheck = false; # torchtext test dependency doesn't currently build
-      # };
+    #   doCheck = false; # torchtext test dependency doesn't currently build
+    # };
 
-      override-einops = oldAttrs: {
-        doCheck = false; # tests are very slow
-      };
-
-      override-fairseq = oldAttrs: rec {
-        version = "0.10.2";
-        src = fetchFromGitHub {
-          owner = "pytorch";
-          repo = "fairseq";
-          rev = "83e615d66905b8ca7483122a37da1a85f13f4b8e"; # download via v0.10.2 tag is now broken for some reason
-          sha256 = "sha256:0c50jvzdb6g9428in7b2rc1h8h7qx80r5rjzki2aa0wbxarp612z";
-        };
-        meta = {}; # turn off broken flag
-      };
-
-      override-torchtext = oldAttrs: {
-        # tests are broken, not sure if the package itself works
-        # meta = {}; # turn off broken flag
-      };
-
-      override-torchaudio = oldAttrs: {
-        doCheck = false; # tests are extremely slow
-      };
-
-    in
-    {
-      albumentations = final.callPackage ./pkgs/albumentations {};
-      amazon-s3-plugin-for-pytorch = final.callPackage additionalInputs.amazon-s3-plugin-for-pytorch {};
-      aravis = final.callPackage ./pkgs/aravis  {};
-      darkflow = final.callPackage ./pkgs/darkflow  {};
-      efficientnet-pytorch = final.callPackage ./pkgs/efficientnet-pytorch  {};
-      einops = (final.callPackage ./pkgs/einops {}).overridePythonAttrs override-einops;
-      expecttest = final.callPackage additionalInputs.expecttest {};
-      fairseq = (final.callPackage additionalInputs.fairseq {}).overrideAttrs override-fairseq;
-      ideepcolor = final.callPackage ./pkgs/ideepcolor  {};
-      imagenet-utils = final.callPackage ./pkgs/imagenet-utils  {};
-      keras = final.callPackage ./pkgs/keras {};
-      keras-resnet = final.callPackage ./pkgs/keras-resnet  {};
-      keras-retinanet = final.callPackage ./pkgs/keras-retinanet  {};
-      kornia = final.callPackage ./pkgs/kornia {};
-      labelimg = final.callPackage ./pkgs/labelimg  {};
-      openpano = final.callPackage ./pkgs/openpano  {};
-      pretrainedmodels = final.callPackage ./pkgs/pretrainedmodels  {};
-      # pytorch-bin = final.callPackage ./pkgs/pytorch/bin.nix {};
-      pytorch-unstable = final.callPackage additionalInputs.pytorch-unstable { cudaSupport = true; };
-      torchdata-unstable = final.callPackage additionalInputs.torchdata-unstable {};
-      qdarkstyle = final.callPackage ./pkgs/qdarkstyle  {};
-      sacrebleu = final.callPackage additionalInputs.sacrebleu {};
-      segmentation-models-pytorch = final.callPackage ./pkgs/segmentation-models-pytorch  {};
-      tensorflow-tensorboard = final.callPackage additionalInputs.tensorflow-tensorboard {};
-      timm = final.callPackage ./pkgs/timm  {};
-      torchaudio = (final.callPackage additionalInputs.torchaudio {}).overridePythonAttrs override-torchaudio;
-      # torchdata = (final.callPackage additionalInputs.torchdata { torchaudio = final.torchaudio-bin; }).overridePythonAttrs override-torchdata;
-      torchtext = (final.callPackage additionalInputs.torchtext {}).overrideAttrs override-torchtext;
-      wandb = final.callPackage ./pkgs/wandb  {};
-      yaspin = final.callPackage ./pkgs/yaspin  {};
-
-      # pytorch = final.pytorch-bin;
-      # torchvision = final.torchvision-bin;
-      # pytorch = final.pytorch-unstable;
-
-      # Excluded for now:
-      # torchvision = final.callPackage ./pkgs/torchvision  {};
-      # numpy = final.callPackage ./pkgs/numpy  {};
+    override-einops = oldAttrs: {
+      doCheck = false; # tests are very slow
     };
-in
-{
-  default = final: prev: let lib = final.lib; in {
+
+    override-fairseq = oldAttrs: rec {
+      version = "0.10.2";
+      src = fetchFromGitHub {
+        owner = "pytorch";
+        repo = "fairseq";
+        rev = "83e615d66905b8ca7483122a37da1a85f13f4b8e"; # download via v0.10.2 tag is now broken for some reason
+        sha256 = "sha256:0c50jvzdb6g9428in7b2rc1h8h7qx80r5rjzki2aa0wbxarp612z";
+      };
+      meta = {}; # turn off broken flag
+    };
+
+    override-torchtext = oldAttrs: {
+      # tests are broken, not sure if the package itself works
+      # meta = {}; # turn off broken flag
+    };
+
+    override-torchaudio = oldAttrs: {
+      doCheck = false; # tests are extremely slow
+    };
+  in {
+    albumentations = final.callPackage ./pkgs/albumentations {};
+    amazon-s3-plugin-for-pytorch = final.callPackage additionalInputs.amazon-s3-plugin-for-pytorch {};
+    aravis = final.callPackage ./pkgs/aravis {};
+    darkflow = final.callPackage ./pkgs/darkflow {};
+    efficientnet-pytorch = final.callPackage ./pkgs/efficientnet-pytorch {};
+    einops = (final.callPackage ./pkgs/einops {}).overridePythonAttrs override-einops;
+    expecttest = final.callPackage additionalInputs.expecttest {};
+    fairseq = (final.callPackage additionalInputs.fairseq {}).overrideAttrs override-fairseq;
+    ideepcolor = final.callPackage ./pkgs/ideepcolor {};
+    imagenet-utils = final.callPackage ./pkgs/imagenet-utils {};
+    keras = final.callPackage ./pkgs/keras {};
+    keras-resnet = final.callPackage ./pkgs/keras-resnet {};
+    keras-retinanet = final.callPackage ./pkgs/keras-retinanet {};
+    kornia = final.callPackage ./pkgs/kornia {};
+    labelimg = final.callPackage ./pkgs/labelimg {};
+    openpano = final.callPackage ./pkgs/openpano {};
+    pretrainedmodels = final.callPackage ./pkgs/pretrainedmodels {};
+    # pytorch-bin = final.callPackage ./pkgs/pytorch/bin.nix {};
+    pytorch-unstable = final.callPackage additionalInputs.pytorch-unstable {cudaSupport = true;};
+    torchdata-unstable = final.callPackage additionalInputs.torchdata-unstable {};
+    qdarkstyle = final.callPackage ./pkgs/qdarkstyle {};
+    sacrebleu = final.callPackage additionalInputs.sacrebleu {};
+    segmentation-models-pytorch = final.callPackage ./pkgs/segmentation-models-pytorch {};
+    tensorflow-tensorboard = final.callPackage additionalInputs.tensorflow-tensorboard {};
+    timm = final.callPackage ./pkgs/timm {};
+    torchaudio = (final.callPackage additionalInputs.torchaudio {}).overridePythonAttrs override-torchaudio;
+    # torchdata = (final.callPackage additionalInputs.torchdata { torchaudio = final.torchaudio-bin; }).overridePythonAttrs override-torchdata;
+    torchtext = (final.callPackage additionalInputs.torchtext {}).overrideAttrs override-torchtext;
+    wandb = final.callPackage ./pkgs/wandb {};
+    yaspin = final.callPackage ./pkgs/yaspin {};
+
+    # pytorch = final.pytorch-bin;
+    # torchvision = final.torchvision-bin;
+    # pytorch = final.pytorch-unstable;
+
+    # Excluded for now:
+    # torchvision = final.callPackage ./pkgs/torchvision  {};
+    # numpy = final.callPackage ./pkgs/numpy  {};
+  };
+in {
+  default = final: prev: let
+    lib = final.lib;
+  in {
     # Overriding python package sets is still messy in nixpkgs at the moment
     python37 = prev.python37.override {
       self = final.python37;
@@ -148,4 +146,3 @@ in
     };
   };
 }
-

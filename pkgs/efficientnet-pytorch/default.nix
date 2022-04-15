@@ -1,13 +1,13 @@
-{ buildPythonPackage
-, fetchPypi
-, lib
-, pytorch
+{
+  buildPythonPackage,
+  fetchPypi,
+  lib,
+  pytorch,
 }:
-
 buildPythonPackage rec {
   # version = "0.7.1";
   version = "0.6.3";
-  pname   = "efficientnet_pytorch";
+  pname = "efficientnet_pytorch";
 
   src = fetchPypi {
     inherit pname version;
@@ -15,12 +15,12 @@ buildPythonPackage rec {
     sha256 = "17ri78kvc112py16ffyscmzxkzj9lj5piqvx6vv9ngl96s9larv6";
   };
 
-  propagatedBuildInputs = [ pytorch ];
+  propagatedBuildInputs = [pytorch];
 
   meta = {
     description = "EfficientNet implemented in PyTorch";
-    homepage    = "https://github.com/lukemelas/EfficientNet-PyTorch";
-    license     = lib.licenses.mit;
+    homepage = "https://github.com/lukemelas/EfficientNet-PyTorch";
+    license = lib.licenses.mit;
     maintainers = with lib.maintainers; [];
   };
 }

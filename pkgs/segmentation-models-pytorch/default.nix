@@ -1,14 +1,14 @@
-{ buildPythonPackage
-, fetchPypi
-, lib
-, torchvision
-, efficientnet-pytorch
-, timm
+{
+  buildPythonPackage,
+  fetchPypi,
+  lib,
+  torchvision,
+  efficientnet-pytorch,
+  timm,
 }:
-
 buildPythonPackage rec {
   version = "0.1.3";
-  pname   = "segmentation_models_pytorch";
+  pname = "segmentation_models_pytorch";
 
   format = "wheel";
 
@@ -26,12 +26,12 @@ buildPythonPackage rec {
   #      --replace 'model_zoo.load_url(settings["url"])' ''
   # '';
 
-  propagatedBuildInputs = [ torchvision efficientnet-pytorch timm ];
+  propagatedBuildInputs = [torchvision efficientnet-pytorch timm];
 
   meta = {
     description = "Image segmentation models with pre-trained backbones. PyTorch.";
-    homepage    = "https://github.com/qubvel/segmentation_models.pytorch";
-    license     = lib.licenses.asl20;
+    homepage = "https://github.com/qubvel/segmentation_models.pytorch";
+    license = lib.licenses.asl20;
     maintainers = with lib.maintainers; [];
   };
 }

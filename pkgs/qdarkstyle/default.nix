@@ -1,8 +1,8 @@
-{ pkgs ? import <nixpkgs> {}
-, python
-, pythonPackages
+{
+  pkgs ? import <nixpkgs> {},
+  python,
+  pythonPackages,
 }:
-
 pythonPackages.buildPythonPackage rec {
   pname = "qdarkstyle";
   version = "dev";

@@ -6,12 +6,17 @@
     flake-utils.url = "github:numtide/flake-utils";
   };
 
-  outputs = { self, nixpkgs, flake-utils, ... }:
-    let
-      # pytorch is not available on aarch64 for now
-      eachEnvironment = f: flake-utils.lib.eachSystem [ flake-utils.lib.system.x86_64-linux ]
-        (
-          system:
+  outputs = {
+    self,
+    nixpkgs,
+    flake-utils,
+    ...
+  }: let
+    # pytorch is not available on aarch64 for now
+    eachEnvironment = f:
+      flake-utils.lib.eachSystem [flake-utils.lib.system.x86_64-linux]
+      (
+        system:
           f {
             inherit system;
             pkgs = import nixpkgs {
@@ -26,12 +31,15 @@
               ];
             };
           }
-        );
-    in
-    eachEnvironment ({ pkgs, system }: {
-
+      );
+  in
+    eachEnvironment ({
+      pkgs,
+      system,
+    }: {
       packages = {
-        inherit (pkgs.python3Packages)
+        inherit
+          (pkgs.python3Packages)
           amazon-s3-plugin-for-pytorch
           efficientnet-pytorch
           einops
@@ -47,29 +55,26 @@
           torchdata-unstable
           wandb
           yaspin
-
-          # known out of date relative to nixpkgs pin (or otherwise broken):
-          # albumentations
-          # aravis
-          # darkflow
-          # ideepcolor
-          # imagenet-utils
-          # labelimg
-          # openpano
-          # qdarkstyle
-          # segmentation-models-pytorch
-          # timm
-          # fairseq # doesn't build at the moment due to cmake version
-          # torchtext
           ;
+
+        # Known out of date relative to nixpkgs pin (or otherwise broken):
+        # albumentations
+        # aravis
+        # darkflow
+        # ideepcolor
+        # imagenet-utils
+        # labelimg
+        # openpano
+        # qdarkstyle
+        # segmentation-models-pytorch
+        # timm
+        # fairseq # doesn't build at the moment due to cmake version
+        # torchtext
       };
-
-    }) // {
-
-
+    })
+    // {
       overlays = import ./overlays.nix;
 
       checks = self.packages;
-
     };
 }

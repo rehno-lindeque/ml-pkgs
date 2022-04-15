@@ -1,25 +1,25 @@
-{ buildPythonPackage
-, click
-, configparser
-, docker_pycreds
-, fetchFromGitHub
-, git
-, GitPython
-, lib
-, pathtools
-, promise
-, protobuf
-, psutil
-, python
-, python-dateutil
-, pyyaml
-, requests
-, sentry-sdk
-, setuptools
-, shortuuid
-, yaspin
+{
+  buildPythonPackage,
+  click,
+  configparser,
+  docker_pycreds,
+  fetchFromGitHub,
+  git,
+  GitPython,
+  lib,
+  pathtools,
+  promise,
+  protobuf,
+  psutil,
+  python,
+  python-dateutil,
+  pyyaml,
+  requests,
+  sentry-sdk,
+  setuptools,
+  shortuuid,
+  yaspin,
 }:
-
 buildPythonPackage rec {
   pname = "wandb";
   version = "0.12.6";
@@ -63,12 +63,12 @@ buildPythonPackage rec {
   # Test suite is currently broken. See https://github.com/wandb/client/issues/2682.
   doCheck = false;
 
-  pythonImportsCheck = [ "wandb" ];
+  pythonImportsCheck = ["wandb"];
 
   meta = with lib; {
     description = "A CLI and library for interacting with the Weights and Biases API";
     homepage = "https://github.com/wandb/client";
     license = licenses.mit;
-    maintainers = with maintainers; [ samuela ];
+    maintainers = with maintainers; [samuela];
   };
 }

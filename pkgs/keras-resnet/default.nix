@@ -1,8 +1,8 @@
-{ fetchFromGitHub
-, python
-, pythonPackages
+{
+  fetchFromGitHub,
+  python,
+  pythonPackages,
 }:
-
 pythonPackages.buildPythonPackage rec {
   version = "dev";
   name = "keras-retinanet-${version}";
@@ -22,4 +22,3 @@ pythonPackages.buildPythonPackage rec {
     ];
   doCheck = false;
 }
-
