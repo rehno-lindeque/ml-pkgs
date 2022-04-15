@@ -49,17 +49,6 @@ let
     let
       inherit (final.pkgs) fetchFromGitHub;
 
-      # override-pytorch-unstable = oldAttrs: rec {
-      #   version = "1.11.0-rc2";
-      #   src = fetchFromGitHub {
-      #     owner = "pytorch";
-      #     repo = "pytorch";
-      #     rev = "v${version}";
-      #     fetchSubmodules = true;
-      #     sha256 = "sha256:0c50jvzdb6g9428in7b2rc1h8h7qx80r5rjzki2aa0wbxarp612z";
-      #   };
-      # };
-
       # override-torchdata = oldAttrs: {
       #   src = fetchFromGitHub {
       #     owner = "pytorch";
