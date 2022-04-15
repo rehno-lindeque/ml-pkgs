@@ -42,9 +42,6 @@
           keras-retinanet
           kornia
           pretrainedmodels
-          # pytorch-bin
-          # pytorch-unstable
-          # pytorch-unstable-with-cuda
           sacrebleu
           tensorflow-tensorboard
           # torchaudio
