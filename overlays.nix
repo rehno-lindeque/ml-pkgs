@@ -144,5 +144,9 @@ in {
       self = final.python310;
       packageOverrides = _: _: prev.python310.pkgs.overrideScope pythonOverrides;
     };
+    python311 = prev.python311.override {
+      self = final.python311;
+      packageOverrides = _: _: prev.python311.pkgs.overrideScope pythonOverrides;
+    };
   };
 }
