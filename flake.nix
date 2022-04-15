@@ -66,17 +66,18 @@
 
     }) // {
 
-      # Default overlay with overrides included for current python 3.x package sets
-      overlay = final: prev:
-        (final.composeManyExtensions
-          [ self.overlays.python37
-            self.overlays.python38
-            self.overlays.python39
-            self.overlays.python310
-          ]
-          final) prev;
 
-      overlays = import ./overlays.nix;
+      overlays = import ./overlays.nix // {
+        # Default overlay with overrides included for current python 3.x package set
+        default = final: prev:
+          (final.composeManyExtensions
+            [ self.overlays.python37
+              self.overlays.python38
+              self.overlays.python39
+              self.overlays.python310
+            ]
+            final) prev;
+      };
 
       checks = self.packages;
 
