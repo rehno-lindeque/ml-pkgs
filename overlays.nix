@@ -123,30 +123,38 @@ let
     # torchvision = final.callPackage ./pkgs/torchvision  {};
     # numpy = final.callPackage ./pkgs/numpy  {};
   };
+
+  emptyOverrides = _: _: {};
+
+  packagesetOverlays =
+    builtins.mapAttrs
+    (key: packageOverrides: final: prev: {
+      "${key}" = prev."${key}".override {
+        self = final."${key}";
+        packageOverrides = final.lib.composeExtensions (prev."${key}".packageOverrides or emptyOverrides) packageOverrides;
+      };
+    })
+    {
+      python37 = pythonOverrides;
+      python38 = pythonOverrides;
+      python39 = pythonOverrides;
+      python310 = pythonOverrides;
+      python311 = pythonOverrides;
+    };
 in {
-  default = final: prev: let
-    lib = final.lib;
-  in {
-    # Overriding python package sets is still messy in nixpkgs at the moment
-    python37 = prev.python37.override {
-      self = final.python37;
-      packageOverrides = _: _: prev.python37.pkgs.overrideScope pythonOverrides;
-    };
-    python38 = prev.python38.override {
-      self = final.python38;
-      packageOverrides = _: _: prev.python38.pkgs.overrideScope pythonOverrides;
-    };
-    python39 = prev.python39.override {
-      self = final.python39;
-      packageOverrides = _: _: prev.python39.pkgs.overrideScope pythonOverrides;
-    };
-    python310 = prev.python310.override {
-      self = final.python310;
-      packageOverrides = _: _: prev.python310.pkgs.overrideScope pythonOverrides;
-    };
-    python311 = prev.python311.override {
-      self = final.python311;
-      packageOverrides = _: _: prev.python311.pkgs.overrideScope pythonOverrides;
-    };
-  };
+  inherit pythonOverrides;
+  inherit (packagesetOverlays) python37 python38 python39 python310 python311;
+
+  # Default overlay with overrides included for current python 3.x package set
+  default = final: prev:
+    prev.lib.composeManyExtensions
+    [
+      packagesetOverlays.python37
+      packagesetOverlays.python38
+      packagesetOverlays.python39
+      packagesetOverlays.python310
+      packagesetOverlays.python311
+    ]
+    final
+    prev;
 }
