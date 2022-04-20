@@ -102,7 +102,12 @@ let
     openpano = final.callPackage ./pkgs/openpano {};
     pretrainedmodels = final.callPackage ./pkgs/pretrainedmodels {};
     # pytorch-bin = final.callPackage ./pkgs/pytorch/bin.nix {};
-    pytorch-unstable = final.callPackage additionalInputs.pytorch-unstable {cudaSupport = true;};
+    pytorch-unstable = final.callPackage additionalInputs.pytorch-unstable {
+      cudaSupport = true;
+      # Using the previous pytorch is necessary because pytorch-unstable is defined in terms of pytorch.
+      # That is, this avoids a cycle if the next overlay defines pytorch = pytorch-unstable.
+      inherit (prev) pytorch;
+    };
     torchdata-unstable = final.callPackage additionalInputs.torchdata-unstable {};
     qdarkstyle = final.callPackage ./pkgs/qdarkstyle {};
     sacrebleu = final.callPackage additionalInputs.sacrebleu {};
