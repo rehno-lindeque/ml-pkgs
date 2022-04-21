@@ -53,6 +53,7 @@
           pytorch-unstable
           sacrebleu
           tensorflow-tensorboard
+          torchdata-nightly-bin
           torchdata-unstable
           wandb
           yaspin

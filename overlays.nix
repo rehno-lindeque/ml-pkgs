@@ -109,6 +109,7 @@ let
       # That is, this avoids a cycle if the next overlay defines pytorch = pytorch-unstable.
       inherit (prev) pytorch;
     };
+    torchdata-nightly-bin = final.callPackage ./pkgs/torchdata/nightly-bin.nix { pytorch = final.pytorch-nightly-bin; };
     torchdata-unstable = final.callPackage additionalInputs.torchdata-unstable {
       # pytorch = final.pytorch-unstable; # TODO
     };
