@@ -55,6 +55,7 @@
           tensorflow-tensorboard
           torchdata-nightly-bin
           torchdata-unstable
+          torchvision-nightly-bin
           wandb
           yaspin
           ;

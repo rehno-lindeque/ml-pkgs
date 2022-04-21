@@ -113,6 +113,7 @@ let
     torchdata-unstable = final.callPackage additionalInputs.torchdata-unstable {
       # pytorch = final.pytorch-unstable; # TODO
     };
+    torchvision-nightly-bin = final.callPackage ./pkgs/torchvision/nightly-bin.nix { pytorch = final.pytorch-nightly-bin; };
     qdarkstyle = final.callPackage ./pkgs/qdarkstyle {};
     sacrebleu = final.callPackage additionalInputs.sacrebleu {};
     segmentation-models-pytorch = final.callPackage ./pkgs/segmentation-models-pytorch {};
