@@ -49,9 +49,9 @@
           keras-retinanet
           kornia
           pretrainedmodels
+          pytorch-unstable
           sacrebleu
           tensorflow-tensorboard
-          pytorch-unstable
           torchdata-unstable
           wandb
           yaspin

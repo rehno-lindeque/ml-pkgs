@@ -108,7 +108,9 @@ let
       # That is, this avoids a cycle if the next overlay defines pytorch = pytorch-unstable.
       inherit (prev) pytorch;
     };
-    torchdata-unstable = final.callPackage additionalInputs.torchdata-unstable {};
+    torchdata-unstable = final.callPackage additionalInputs.torchdata-unstable {
+      # pytorch = final.pytorch-unstable; # TODO
+    };
     qdarkstyle = final.callPackage ./pkgs/qdarkstyle {};
     sacrebleu = final.callPackage additionalInputs.sacrebleu {};
     segmentation-models-pytorch = final.callPackage ./pkgs/segmentation-models-pytorch {};
@@ -119,14 +121,6 @@ let
     torchtext = (final.callPackage additionalInputs.torchtext {}).overrideAttrs override-torchtext;
     wandb = final.callPackage ./pkgs/wandb {};
     yaspin = final.callPackage ./pkgs/yaspin {};
-
-    # pytorch = final.pytorch-bin;
-    # torchvision = final.torchvision-bin;
-    # pytorch = final.pytorch-unstable;
-
-    # Excluded for now:
-    # torchvision = final.callPackage ./pkgs/torchvision  {};
-    # numpy = final.callPackage ./pkgs/numpy  {};
   };
 
   emptyOverrides = _: _: {};
