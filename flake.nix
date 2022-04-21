@@ -49,6 +49,7 @@
           keras-retinanet
           kornia
           pretrainedmodels
+          pytorch-nightly-bin
           pytorch-unstable
           sacrebleu
           tensorflow-tensorboard

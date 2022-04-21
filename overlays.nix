@@ -102,6 +102,7 @@ let
     openpano = final.callPackage ./pkgs/openpano {};
     pretrainedmodels = final.callPackage ./pkgs/pretrainedmodels {};
     # pytorch-bin = final.callPackage ./pkgs/pytorch/bin.nix {};
+    pytorch-nightly-bin = final.callPackage ./pkgs/pytorch/nightly-bin.nix { };
     pytorch-unstable = final.callPackage additionalInputs.pytorch-unstable {
       cudaSupport = true;
       # Using the previous pytorch is necessary because pytorch-unstable is defined in terms of pytorch.
