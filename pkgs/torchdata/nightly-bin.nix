@@ -48,8 +48,8 @@ in buildPythonPackage {
   pythonImportsCheck = [ "torchdata.datapipes" ];
 
   meta = with lib; {
-    description = "Open source, prototype-to-production deep learning platform";
-    homepage = "https://pytorch.org/";
+    description = "Data loading and utilities to be shared by the PyTorch domain libraries.";
+    homepage = "https://pytorch.org/data";
     license = licenses.bsd3;
     platforms = platforms.linux ++ platforms.darwin;
     maintainers = with maintainers; [];
