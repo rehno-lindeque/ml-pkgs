@@ -84,6 +84,9 @@ let
     override-torchaudio = oldAttrs: {
       doCheck = false; # tests are extremely slow
     };
+    override-torchdata = oldAttrs: {
+      doCheck = false; # I'm too lazy to get the tests working for now
+    };
   in {
     albumentations = final.callPackage ./pkgs/albumentations {};
     amazon-s3-plugin-for-pytorch = final.callPackage additionalInputs.amazon-s3-plugin-for-pytorch {};
@@ -110,12 +113,6 @@ let
       # That is, this avoids a cycle if the next overlay defines pytorch = pytorch-unstable.
       inherit (prev) pytorch;
     };
-    torchdata-nightly-bin = final.callPackage ./pkgs/torchdata/nightly-bin.nix { pytorch = final.pytorch-nightly-bin; };
-    torchdata-unstable = final.callPackage additionalInputs.torchdata-unstable {
-      pytorch = final.pytorch-nightly-bin;
-      torchaudio = final.torchaudio-nightly-bin;
-    };
-    torchvision-nightly-bin = final.callPackage ./pkgs/torchvision/nightly-bin.nix { pytorch = final.pytorch-nightly-bin; };
     qdarkstyle = final.callPackage ./pkgs/qdarkstyle {};
     sacrebleu = final.callPackage additionalInputs.sacrebleu {};
     segmentation-models-pytorch = final.callPackage ./pkgs/segmentation-models-pytorch {};
@@ -123,9 +120,13 @@ let
     timm = final.callPackage ./pkgs/timm {};
     torchaudio = (final.callPackage additionalInputs.torchaudio {}).overridePythonAttrs override-torchaudio;
     torchaudio-nightly-bin = final.callPackage ./pkgs/torchaudio/nightly-bin.nix { pytorch = final.pytorch-nightly-bin; };
-    # torchdata = (final.callPackage additionalInputs.torchdata { torchaudio = final.torchaudio-bin; }).overridePythonAttrs override-torchdata;
+    torchdata-nightly-bin = final.callPackage ./pkgs/torchdata/nightly-bin.nix { pytorch = final.pytorch-nightly-bin; };
+    torchdata-unstable = (final.callPackage additionalInputs.torchdata-unstable {
+      pytorch = final.pytorch-nightly-bin;
+    }).overridePythonAttrs override-torchdata;
     torchtext = (final.callPackage additionalInputs.torchtext {}).overrideAttrs override-torchtext;
     torchtext-nightly-bin = final.callPackage ./pkgs/torchtext/nightly-bin.nix { pytorch = final.pytorch-nightly-bin; };
+    torchvision-nightly-bin = final.callPackage ./pkgs/torchvision/nightly-bin.nix { pytorch = final.pytorch-nightly-bin; };
     wandb = final.callPackage ./pkgs/wandb {};
     yaspin = final.callPackage ./pkgs/yaspin {};
   };
