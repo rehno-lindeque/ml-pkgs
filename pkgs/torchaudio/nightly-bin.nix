@@ -29,18 +29,7 @@ in buildPythonPackage {
     pytorch
   ];
 
-  # The wheel-binary is not stripped to avoid the error of `ImportError: libtorch_cuda_cpp.so: ELF load command address/offset not properly aligned.`.
-  dontStrip = true;
-
   pythonImportsCheck = [ "torchaudio" ];
-
-  postFixup = ''
-    # Note: after patchelf'ing, libcudart can still not be found. However, this should
-    #       not be an issue, because PyTorch is loaded before torchvision and brings
-    #       in the necessary symbols.
-    patchelf --set-rpath "${lib.makeLibraryPath [ stdenv.cc.cc.lib ]}:${pytorch}/${python.sitePackages}/torch/lib:" \
-      "$out/${python.sitePackages}/torchaudio/_torchaudio.so"
-  '';
 
   meta = with lib; {
     description = "PyTorch audio library";
