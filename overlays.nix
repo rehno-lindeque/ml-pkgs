@@ -111,7 +111,8 @@ let
     };
     torchdata-nightly-bin = final.callPackage ./pkgs/torchdata/nightly-bin.nix { pytorch = final.pytorch-nightly-bin; };
     torchdata-unstable = final.callPackage additionalInputs.torchdata-unstable {
-      # pytorch = final.pytorch-unstable; # TODO
+      pytorch = final.pytorch-nightly-bin;
+      torchaudio = final.torchaudio-nightly-bin;
     };
     torchvision-nightly-bin = final.callPackage ./pkgs/torchvision/nightly-bin.nix { pytorch = final.pytorch-nightly-bin; };
     qdarkstyle = final.callPackage ./pkgs/qdarkstyle {};
@@ -120,6 +121,7 @@ let
     tensorflow-tensorboard = final.callPackage additionalInputs.tensorflow-tensorboard {};
     timm = final.callPackage ./pkgs/timm {};
     torchaudio = (final.callPackage additionalInputs.torchaudio {}).overridePythonAttrs override-torchaudio;
+    torchaudio-nightly-bin = final.callPackage ./pkgs/torchaudio/nightly-bin.nix { pytorch = final.pytorch-nightly-bin; };
     # torchdata = (final.callPackage additionalInputs.torchdata { torchaudio = final.torchaudio-bin; }).overridePythonAttrs override-torchdata;
     torchtext = (final.callPackage additionalInputs.torchtext {}).overrideAttrs override-torchtext;
     wandb = final.callPackage ./pkgs/wandb {};

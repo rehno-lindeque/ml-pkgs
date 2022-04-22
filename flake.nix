@@ -53,6 +53,7 @@
           pytorch-unstable
           sacrebleu
           tensorflow-tensorboard
+          torchaudio-nightly-bin
           torchdata-nightly-bin
           torchdata-unstable
           torchvision-nightly-bin
