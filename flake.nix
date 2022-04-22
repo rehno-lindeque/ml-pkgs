@@ -77,7 +77,7 @@
       };
     })
     // {
-      overlays = import ./overlays.nix;
+      overlays = import ./overlays.nix { flake = self; };
 
       checks = self.packages;
     };

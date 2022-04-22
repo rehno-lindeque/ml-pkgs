@@ -1,3 +1,4 @@
+{ flake }:
 let
   # Inputs that cannot be specified in the flake inputs schema (e.g. single file urls)
   additionalInputs = {
