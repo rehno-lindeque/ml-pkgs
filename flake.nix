@@ -56,6 +56,7 @@
           torchaudio-nightly-bin
           torchdata-nightly-bin
           torchdata-unstable
+          torchtext-nightly-bin
           torchvision-nightly-bin
           wandb
           yaspin

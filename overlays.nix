@@ -125,6 +125,7 @@ let
     torchaudio-nightly-bin = final.callPackage ./pkgs/torchaudio/nightly-bin.nix { pytorch = final.pytorch-nightly-bin; };
     # torchdata = (final.callPackage additionalInputs.torchdata { torchaudio = final.torchaudio-bin; }).overridePythonAttrs override-torchdata;
     torchtext = (final.callPackage additionalInputs.torchtext {}).overrideAttrs override-torchtext;
+    torchtext-nightly-bin = final.callPackage ./pkgs/torchtext/nightly-bin.nix { pytorch = final.pytorch-nightly-bin; };
     wandb = final.callPackage ./pkgs/wandb {};
     yaspin = final.callPackage ./pkgs/yaspin {};
   };
