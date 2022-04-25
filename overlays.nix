@@ -11,8 +11,8 @@ let
       sha256 = "sha256:1fi41id5kmlviykqfrjlvm43dnlkd0155zvcr4aw2x756i2f6z5g";
     };
     torchdata-unstable = builtins.fetchurl {
-      url = https://raw.githubusercontent.com/rehno-lindeque/nixpkgs/f43cfcd81387c453ef74da55e098cd076885a2b2/pkgs/development/python-modules/torchdata/unstable.nix;
-      sha256 = "sha256:02c9nkfsj4aw16i6h2mhi1r7jd1i683qyn7pg1q6gnnhkfhjjkdx";
+      url = https://raw.githubusercontent.com/rehno-lindeque/nixpkgs/7c1748a0e607bbfc24be50d13c6b54f671be5af5/pkgs/development/python-modules/torchdata/unstable.nix;
+      sha256 = "sha256:094zsm80wwiivpxnrwmdck30vn2zhjzy99szpjwi18rzv3ll0rfx";
     };
     expecttest = builtins.fetchurl {
       # https://github.com/NixOS/nixpkgs/pull/160197
@@ -123,6 +123,8 @@ let
     torchdata-nightly-bin = final.callPackage ./pkgs/torchdata/nightly-bin.nix { pytorch = final.pytorch-nightly-bin; };
     torchdata-unstable = (final.callPackage additionalInputs.torchdata-unstable {
       pytorch = final.pytorch-nightly-bin;
+      torchaudio = final.torchaudio-nightly-bin;
+      torchtext = final.torchtext-nightly-bin;
     }).overridePythonAttrs override-torchdata;
     torchtext = (final.callPackage additionalInputs.torchtext {}).overrideAttrs override-torchtext;
     torchtext-nightly-bin = final.callPackage ./pkgs/torchtext/nightly-bin.nix { pytorch = final.pytorch-nightly-bin; };
