@@ -1,5 +1,41 @@
 {
   "nodes": {
+    "amazon-s3-plugin-for-pytorch": {
+      "flake": false,
+      "locked": {
+        "narHash": "sha256-7HIOwIvOeAa6RIABPQwrzGpQqQSqhQU7Geuvho+U9vk=",
+        "type": "file",
+        "url": "https://raw.githubusercontent.com/NixOS/nixpkgs/835b9f2b58277fac67eb96b5ab2d21f2315295e6/pkgs/development/python-modules/amazon-s3-plugin-for-pytorch/default.nix"
+      },
+      "original": {
+        "type": "file",
+        "url": "https://raw.githubusercontent.com/NixOS/nixpkgs/835b9f2b58277fac67eb96b5ab2d21f2315295e6/pkgs/development/python-modules/amazon-s3-plugin-for-pytorch/default.nix"
+      }
+    },
+    "expecttest": {
+      "flake": false,
+      "locked": {
+        "narHash": "sha256-hCaBcOxz67uvCIbzCQFkrH2DgwHoS5R2T/Dyk6U+iSY=",
+        "type": "file",
+        "url": "https://raw.githubusercontent.com/NixOS/nixpkgs/da2b767621fd538881e130d12ecdfdd3195727a3/pkgs/development/python-modules/expecttest/default.nix"
+      },
+      "original": {
+        "type": "file",
+        "url": "https://raw.githubusercontent.com/NixOS/nixpkgs/da2b767621fd538881e130d12ecdfdd3195727a3/pkgs/development/python-modules/expecttest/default.nix"
+      }
+    },
+    "fairseq": {
+      "flake": false,
+      "locked": {
+        "narHash": "sha256-syalVqoSwNdxvupANYuiWAcwxnqse8U0C7KMLC8m5Rk=",
+        "type": "file",
+        "url": "https://raw.githubusercontent.com/NixOS/nixpkgs/3b4512affed042a5bab8debdd6a41b0eb7d143da/pkgs/development/python-modules/fairseq/default.nix"
+      },
+      "original": {
+        "type": "file",
+        "url": "https://raw.githubusercontent.com/NixOS/nixpkgs/3b4512affed042a5bab8debdd6a41b0eb7d143da/pkgs/development/python-modules/fairseq/default.nix"
+      }
+    },
     "flake-utils": {
       "locked": {
         "lastModified": 1644229661,
@@ -31,10 +67,91 @@
         "type": "github"
       }
     },
+    "pytorch-unstable": {
+      "flake": false,
+      "locked": {
+        "narHash": "sha256-spIzSTA86jfIWNVqzrW9Mg0xSUC4SVDj6qJdY6241pU=",
+        "type": "file",
+        "url": "https://raw.githubusercontent.com/rehno-lindeque/nixpkgs/f43cfcd81387c453ef74da55e098cd076885a2b2/pkgs/development/python-modules/pytorch/unstable.nix"
+      },
+      "original": {
+        "type": "file",
+        "url": "https://raw.githubusercontent.com/rehno-lindeque/nixpkgs/f43cfcd81387c453ef74da55e098cd076885a2b2/pkgs/development/python-modules/pytorch/unstable.nix"
+      }
+    },
     "root": {
       "inputs": {
+        "amazon-s3-plugin-for-pytorch": "amazon-s3-plugin-for-pytorch",
+        "expecttest": "expecttest",
+        "fairseq": "fairseq",
         "flake-utils": "flake-utils",
-        "nixpkgs": "nixpkgs"
+        "nixpkgs": "nixpkgs",
+        "pytorch-unstable": "pytorch-unstable",
+        "sacrebleu": "sacrebleu",
+        "tensorflow-tensorboard": "tensorflow-tensorboard",
+        "torchaudio": "torchaudio",
+        "torchdata-unstable": "torchdata-unstable",
+        "torchtext": "torchtext"
+      }
+    },
+    "sacrebleu": {
+      "flake": false,
+      "locked": {
+        "narHash": "sha256-OeZjPL2yAk/yulCtqUB7i/ZTOiqU69TXz2PPmFvjeUA=",
+        "type": "file",
+        "url": "https://raw.githubusercontent.com/NixOS/nixpkgs/64ab7ab9debb6d93311083a735419f837d8d6022/pkgs/development/python-modules/sacrebleu/default.nix"
+      },
+      "original": {
+        "type": "file",
+        "url": "https://raw.githubusercontent.com/NixOS/nixpkgs/64ab7ab9debb6d93311083a735419f837d8d6022/pkgs/development/python-modules/sacrebleu/default.nix"
+      }
+    },
+    "tensorflow-tensorboard": {
+      "flake": false,
+      "locked": {
+        "narHash": "sha256-ONofav7jgoc2fs2CbNLj6NojCguH4eCuyQVJaAMENHw=",
+        "type": "file",
+        "url": "https://raw.githubusercontent.com/rehno-lindeque/nixpkgs/e6997a4c433c117563443952e5de5cd4265d0065/pkgs/development/python-modules/tensorflow-tensorboard/default.nix"
+      },
+      "original": {
+        "type": "file",
+        "url": "https://raw.githubusercontent.com/rehno-lindeque/nixpkgs/e6997a4c433c117563443952e5de5cd4265d0065/pkgs/development/python-modules/tensorflow-tensorboard/default.nix"
+      }
+    },
+    "torchaudio": {
+      "flake": false,
+      "locked": {
+        "narHash": "sha256-h5IyE17a1jpw0nqlM59eIl0Nu3vP5VHlcF9cs91F5lc=",
+        "type": "file",
+        "url": "https://raw.githubusercontent.com/NixOS/nixpkgs/ffe409095cfcec679fe0f0a97db6adb4c0c6d32d/pkgs/development/python-modules/torchaudio/default.nix"
+      },
+      "original": {
+        "type": "file",
+        "url": "https://raw.githubusercontent.com/NixOS/nixpkgs/ffe409095cfcec679fe0f0a97db6adb4c0c6d32d/pkgs/development/python-modules/torchaudio/default.nix"
+      }
+    },
+    "torchdata-unstable": {
+      "flake": false,
+      "locked": {
+        "narHash": "sha256-yqciP3kPVM9VaKwcAflhQNT9smeVQpJuMaeGmS6fr4s=",
+        "type": "file",
+        "url": "https://raw.githubusercontent.com/rehno-lindeque/nixpkgs/7c1748a0e607bbfc24be50d13c6b54f671be5af5/pkgs/development/python-modules/torchdata/unstable.nix"
+      },
+      "original": {
+        "type": "file",
+        "url": "https://raw.githubusercontent.com/rehno-lindeque/nixpkgs/7c1748a0e607bbfc24be50d13c6b54f671be5af5/pkgs/development/python-modules/torchdata/unstable.nix"
+      }
+    },
+    "torchtext": {
+      "flake": false,
+      "locked": {
+        "narHash": "sha256-GkyfXfITYvVR+sxBMe7IOMdV7xL9wm3KLRSw8HLSG7g=",
+        "type": "file",
+        "url": "https://raw.githubusercontent.com/NixOS/nixpkgs/c96132b4a0df81106c91bddca6f895fe5d44469e/pkgs/development/python-modules/torchtext/default.nix"
+      },
+      "original": {
+        "type": "file",
+        "url": "https://raw.githubusercontent.com/NixOS/nixpkgs/c96132b4a0df81106c91bddca6f895fe5d44469e/pkgs/development/python-modules/torchtext/default.nix"
       }
     }
   },
