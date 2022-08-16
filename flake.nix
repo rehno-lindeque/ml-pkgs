@@ -14,6 +14,10 @@
       url = "https://raw.githubusercontent.com/rehno-lindeque/nixpkgs/f43cfcd81387c453ef74da55e098cd076885a2b2/pkgs/development/python-modules/pytorch/unstable.nix";
       flake = false;
     };
+    torchdata-bin = {
+      url = "https://raw.githubusercontent.com/rehno-lindeque/nixpkgs/0d6f6f0f04e5eb05f0253580c78289bbb4a4c690/pkgs/development/python-modules/torchdata/bin.nix";
+      flake = false;
+    };
     torchdata-unstable = {
       url = "https://raw.githubusercontent.com/rehno-lindeque/nixpkgs/7c1748a0e607bbfc24be50d13c6b54f671be5af5/pkgs/development/python-modules/torchdata/unstable.nix";
       flake = false;
@@ -92,6 +96,7 @@
           sacrebleu
           tensorflow-tensorboard
           torchaudio-nightly-bin
+          torchdata-bin
           torchdata-nightly-bin
           torchdata-unstable
           torchtext-nightly-bin

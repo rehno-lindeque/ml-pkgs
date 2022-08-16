@@ -90,6 +90,7 @@
         "sacrebleu": "sacrebleu",
         "tensorflow-tensorboard": "tensorflow-tensorboard",
         "torchaudio": "torchaudio",
+        "torchdata-bin": "torchdata-bin",
         "torchdata-unstable": "torchdata-unstable",
         "torchtext": "torchtext"
       }
@@ -128,6 +129,18 @@
       "original": {
         "type": "file",
         "url": "https://raw.githubusercontent.com/NixOS/nixpkgs/ffe409095cfcec679fe0f0a97db6adb4c0c6d32d/pkgs/development/python-modules/torchaudio/default.nix"
+      }
+    },
+    "torchdata-bin": {
+      "flake": false,
+      "locked": {
+        "narHash": "sha256-AhWKgcai/nSwcVxoQn5gaffMgGkH185KNJESUim98es=",
+        "type": "file",
+        "url": "https://raw.githubusercontent.com/rehno-lindeque/nixpkgs/0d6f6f0f04e5eb05f0253580c78289bbb4a4c690/pkgs/development/python-modules/torchdata/bin.nix"
+      },
+      "original": {
+        "type": "file",
+        "url": "https://raw.githubusercontent.com/rehno-lindeque/nixpkgs/0d6f6f0f04e5eb05f0253580c78289bbb4a4c690/pkgs/development/python-modules/torchdata/bin.nix"
       }
     },
     "torchdata-unstable": {
