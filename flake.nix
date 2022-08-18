@@ -15,7 +15,7 @@
       flake = false;
     };
     torchdata-bin = {
-      url = "https://raw.githubusercontent.com/rehno-lindeque/nixpkgs/0d6f6f0f04e5eb05f0253580c78289bbb4a4c690/pkgs/development/python-modules/torchdata/bin.nix";
+      url = "https://raw.githubusercontent.com/rehno-lindeque/nixpkgs/46fb58dc9eae5e73d4a42b9784bbdd507d44fa8b/pkgs/development/python-modules/torchdata/bin.nix";
       flake = false;
     };
     torchdata-unstable = {
