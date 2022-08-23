@@ -148,7 +148,7 @@
       "locked": {
         "narHash": "sha256-np+nE9kCDFbEM2Xc6WSlU3h9+8RrK9+ZYIu3Nl9ReEY=",
         "type": "file",
-        "url": "https://patch-diff.githubusercontent.com/raw/NixOS/nixpkgs/pull/187779.patch"
+        "url": "https://github.com/NixOS/nixpkgs/pull/187779.patch"
       },
       "original": {
         "type": "file",

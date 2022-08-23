@@ -11,7 +11,7 @@
       flake = false;
     };
     torchdata-bin-patch = {
-      url = "https://patch-diff.githubusercontent.com/raw/NixOS/nixpkgs/pull/187779.patch";
+      url = "https://github.com/NixOS/nixpkgs/pull/187779.patch";
       flake = false;
     };
 
