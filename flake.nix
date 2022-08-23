@@ -60,14 +60,14 @@
     flake-utils,
     ...
   }: let
-    nixpkgs-patched = nixpkgs.legacyPackages.x86_64-linux.applyPatches {
+    nixpkgs-patched = (nixpkgs.legacyPackages.x86_64-linux.applyPatches {
       name = "nixpkgs-patched";
       src = nixpkgs;
       patches = [
         self.inputs.pytorch-bin-patch
         self.inputs.torchdata-bin-patch
       ];
-    };
+    }).outPath;
 
     # pytorch is not available on aarch64 for now
     eachEnvironment = f:
@@ -76,7 +76,7 @@
         system:
           f {
             inherit system;
-            pkgs = import nixpkgs-patched {
+            pkgs = import nixpkgs {
               inherit system;
               config = {
                 allowUnfree = true;
@@ -136,7 +136,7 @@
       };
     })
     // {
-      overlays = import ./overlays.nix { flake = self; };
+      overlays = import ./overlays.nix { flake = self; inherit nixpkgs-patched; };
 
       checks = self.packages;
     };
