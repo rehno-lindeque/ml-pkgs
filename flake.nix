@@ -106,6 +106,8 @@
           keras-retinanet
           kornia
           pretrainedmodels
+          pytorch
+          pytorch-bin
           pytorch-nightly-bin
           pytorch-unstable
           sacrebleu
