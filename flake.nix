@@ -5,7 +5,8 @@
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     flake-utils.url = "github:numtide/flake-utils";
 
-    # Nixpkgs patches
+    # Nixpkgs patching
+    nixpkgs-unpatched.url = "github:nixos/nixpkgs/nixos-unstable";
     pytorch-bin-patch = {
       url = "https://github.com/NixOS/nixpkgs/compare/f36ab16d7abaf7bda5ead040bf7c1897e546b881...rehno-lindeque:nixpkgs:pytorch-1.12.1.patch";
       flake = false;
@@ -66,7 +67,7 @@
   }: let
     nixpkgs-patched = (nixpkgs.legacyPackages.x86_64-linux.applyPatches {
       name = "nixpkgs-patched";
-      src = nixpkgs;
+      src = self.inputs.nixpkgs-unpatched;
       patches = [
         self.inputs.pytorch-bin-patch
         self.inputs.torchdata-bin-patch
