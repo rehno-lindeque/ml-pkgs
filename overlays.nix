@@ -74,7 +74,7 @@ let
     timm = final.callPackage ./pkgs/timm {};
     torchaudio = (final.callPackage flake.inputs.torchaudio {}).overridePythonAttrs override-torchaudio;
     torchaudio-nightly-bin = final.callPackage ./pkgs/torchaudio/nightly-bin.nix { pytorch = final.pytorch-nightly-bin; };
-    torchdata-bin = final.callPackage flake.inputs.torchdata-bin { pytorch = final.pytorch-bin; };
+    torchdata-bin = prev.torchdata-bin.override { pytorch = final.pytorch-bin; };
     torchdata-nightly-bin = final.callPackage ./pkgs/torchdata/nightly-bin.nix { pytorch = final.pytorch-nightly-bin; };
     torchdata-unstable = (final.callPackage flake.inputs.torchdata-unstable {
       pytorch = final.pytorch-nightly-bin;

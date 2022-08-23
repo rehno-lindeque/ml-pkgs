@@ -5,6 +5,16 @@
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     flake-utils.url = "github:numtide/flake-utils";
 
+    # Nixpkgs patches
+    pytorch-bin-patch = {
+      url = "https://github.com/NixOS/nixpkgs/compare/f36ab16d7abaf7bda5ead040bf7c1897e546b881...rehno-lindeque:nixpkgs:pytorch-1.12.1.patch";
+      flake = false;
+    };
+    torchdata-bin-patch = {
+      url = "https://patch-diff.githubusercontent.com/raw/NixOS/nixpkgs/pull/187779.patch";
+      flake = false;
+    };
+
     # Nix imports
     amazon-s3-plugin-for-pytorch = {
       url = "https://raw.githubusercontent.com/NixOS/nixpkgs/835b9f2b58277fac67eb96b5ab2d21f2315295e6/pkgs/development/python-modules/amazon-s3-plugin-for-pytorch/default.nix";
@@ -12,10 +22,6 @@
     };
     pytorch-unstable = {
       url = "https://raw.githubusercontent.com/rehno-lindeque/nixpkgs/f43cfcd81387c453ef74da55e098cd076885a2b2/pkgs/development/python-modules/pytorch/unstable.nix";
-      flake = false;
-    };
-    torchdata-bin = {
-      url = "https://raw.githubusercontent.com/rehno-lindeque/nixpkgs/46fb58dc9eae5e73d4a42b9784bbdd507d44fa8b/pkgs/development/python-modules/torchdata/bin.nix";
       flake = false;
     };
     torchdata-unstable = {
@@ -54,6 +60,15 @@
     flake-utils,
     ...
   }: let
+    nixpkgs-patched = nixpkgs.legacyPackages.x86_64-linux.applyPatches {
+      name = "nixpkgs-patched";
+      src = nixpkgs;
+      patches = [
+        self.inputs.pytorch-bin-patch
+        self.inputs.torchdata-bin-patch
+      ];
+    };
+
     # pytorch is not available on aarch64 for now
     eachEnvironment = f:
       flake-utils.lib.eachSystem [flake-utils.lib.system.x86_64-linux]
@@ -61,7 +76,7 @@
         system:
           f {
             inherit system;
-            pkgs = import nixpkgs {
+            pkgs = import nixpkgs-patched {
               inherit system;
               config = {
                 allowUnfree = true;
