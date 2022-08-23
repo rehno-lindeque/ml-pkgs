@@ -104,7 +104,8 @@
         "torchaudio": "torchaudio",
         "torchdata-bin-patch": "torchdata-bin-patch",
         "torchdata-unstable": "torchdata-unstable",
-        "torchtext": "torchtext"
+        "torchtext": "torchtext",
+        "torchvision-patch": "torchvision-patch"
       }
     },
     "sacrebleu": {
@@ -152,7 +153,7 @@
       },
       "original": {
         "type": "file",
-        "url": "https://patch-diff.githubusercontent.com/raw/NixOS/nixpkgs/pull/187779.patch"
+        "url": "https://github.com/NixOS/nixpkgs/pull/187779.patch"
       }
     },
     "torchdata-unstable": {
@@ -177,6 +178,18 @@
       "original": {
         "type": "file",
         "url": "https://raw.githubusercontent.com/NixOS/nixpkgs/c96132b4a0df81106c91bddca6f895fe5d44469e/pkgs/development/python-modules/torchtext/default.nix"
+      }
+    },
+    "torchvision-patch": {
+      "flake": false,
+      "locked": {
+        "narHash": "sha256-sJHSpvCrDfe/UsEEbwEYg+oGGbochTu2rfPogjZhQyc=",
+        "type": "file",
+        "url": "https://github.com/NixOS/nixpkgs/pull/188030.patch"
+      },
+      "original": {
+        "type": "file",
+        "url": "https://github.com/NixOS/nixpkgs/pull/188030.patch"
       }
     }
   },

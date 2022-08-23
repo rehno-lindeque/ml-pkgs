@@ -14,6 +14,10 @@
       url = "https://github.com/NixOS/nixpkgs/pull/187779.patch";
       flake = false;
     };
+    torchvision-patch = {
+      url = "https://github.com/NixOS/nixpkgs/pull/188030.patch";
+      flake = false;
+    };
 
     # Nix imports
     amazon-s3-plugin-for-pytorch = {
@@ -66,6 +70,7 @@
       patches = [
         self.inputs.pytorch-bin-patch
         self.inputs.torchdata-bin-patch
+        self.inputs.torchvision-patch
       ];
     }).outPath;
 
@@ -117,7 +122,9 @@
           torchdata-nightly-bin
           torchdata-unstable
           torchtext-nightly-bin
+          torchvision
           torchvision-nightly-bin
+          torchvision-bin
           wandb
           yaspin
           ;

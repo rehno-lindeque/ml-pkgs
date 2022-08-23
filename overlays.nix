@@ -85,6 +85,8 @@ let
     }).overridePythonAttrs override-torchdata;
     torchtext = (final.callPackage flake.inputs.torchtext {}).overrideAttrs override-torchtext;
     torchtext-nightly-bin = final.callPackage ./pkgs/torchtext/nightly-bin.nix { pytorch = final.pytorch-nightly-bin; };
+    torchvision = final.callPackage "${nixpkgs-patched}/pkgs/development/python-modules/torchvision" {};
+    torchvision-bin = final.callPackage "${nixpkgs-patched}/pkgs/development/python-modules/torchvision/bin.nix" {};
     torchvision-nightly-bin = final.callPackage ./pkgs/torchvision/nightly-bin.nix { pytorch = final.pytorch-nightly-bin; };
     wandb = final.callPackage ./pkgs/wandb {};
     yaspin = final.callPackage ./pkgs/yaspin {};
