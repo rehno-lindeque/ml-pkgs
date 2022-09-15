@@ -85,6 +85,7 @@ let
     torchtext = (final.callPackage flake.inputs.torchtext {}).overrideAttrs override-torchtext;
     torchtext-nightly-bin = final.callPackage ./pkgs/torchtext/nightly-bin.nix { pytorch = final.pytorch-nightly-bin; };
     torchvision-nightly-bin = final.callPackage ./pkgs/torchvision/nightly-bin.nix { pytorch = final.pytorch-nightly-bin; };
+    types-pillow = final.callPackage "${nixpkgs-patched}/pkgs/development/python-modules/types-pillow" {};
     wandb = final.callPackage ./pkgs/wandb {};
     yaspin = final.callPackage ./pkgs/yaspin {};
   };

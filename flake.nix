@@ -126,6 +126,7 @@
           torchdata-unstable
           torchtext-nightly-bin
           torchvision-nightly-bin
+          types-pillow
           wandb
           yaspin
           ;
