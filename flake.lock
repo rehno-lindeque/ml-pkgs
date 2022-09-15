@@ -65,10 +65,11 @@
     },
     "nixpkgs": {
       "locked": {
-        "lastModified": 1661088761,
+        "lastModified": 1663087123,
+        "narHash": "sha256-cNIRkF/J4mRxDtNYw+9/fBNq/NOA2nCuPOa3EdIyeDs=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "a7855f2235a1876f97473a76151fec2afa02b287",
+        "rev": "9608ace7009ce5bc3aeb940095e01553e635cbc7",
         "type": "github"
       },
       "original": {
@@ -80,11 +81,11 @@
     },
     "nixpkgs-unpatched": {
       "locked": {
-        "lastModified": 1661088761,
-        "narHash": "sha256-5DGKX81wIPAAiLwUmUYECpA3vop94AHHR7WmGXSsQok=",
+        "lastModified": 1663087123,
+        "narHash": "sha256-cNIRkF/J4mRxDtNYw+9/fBNq/NOA2nCuPOa3EdIyeDs=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "a7855f2235a1876f97473a76151fec2afa02b287",
+        "rev": "9608ace7009ce5bc3aeb940095e01553e635cbc7",
         "type": "github"
       },
       "original": {
@@ -92,18 +93,6 @@
         "ref": "nixos-unstable",
         "repo": "nixpkgs",
         "type": "github"
-      }
-    },
-    "pytorch-bin-patch": {
-      "flake": false,
-      "locked": {
-        "narHash": "sha256-17XOmIzwrPRpNhmjAjGnbex7MYrT6RUq/BbPOx5vnU0=",
-        "type": "file",
-        "url": "https://github.com/NixOS/nixpkgs/compare/f36ab16d7abaf7bda5ead040bf7c1897e546b881...rehno-lindeque:nixpkgs:pytorch-1.12.1.patch"
-      },
-      "original": {
-        "type": "file",
-        "url": "https://github.com/NixOS/nixpkgs/compare/f36ab16d7abaf7bda5ead040bf7c1897e546b881...rehno-lindeque:nixpkgs:pytorch-1.12.1.patch"
       }
     },
     "pytorch-unstable": {
@@ -127,15 +116,13 @@
         "flake-utils": "flake-utils",
         "nixpkgs": "nixpkgs",
         "nixpkgs-unpatched": "nixpkgs-unpatched",
-        "pytorch-bin-patch": "pytorch-bin-patch",
         "pytorch-unstable": "pytorch-unstable",
         "sacrebleu": "sacrebleu",
         "tensorflow-tensorboard": "tensorflow-tensorboard",
         "torchaudio": "torchaudio",
         "torchdata-bin-patch": "torchdata-bin-patch",
         "torchdata-unstable": "torchdata-unstable",
-        "torchtext": "torchtext",
-        "torchvision-patch": "torchvision-patch"
+        "torchtext": "torchtext"
       }
     },
     "sacrebleu": {
@@ -208,18 +195,6 @@
       "original": {
         "type": "file",
         "url": "https://raw.githubusercontent.com/NixOS/nixpkgs/c96132b4a0df81106c91bddca6f895fe5d44469e/pkgs/development/python-modules/torchtext/default.nix"
-      }
-    },
-    "torchvision-patch": {
-      "flake": false,
-      "locked": {
-        "narHash": "sha256-sJHSpvCrDfe/UsEEbwEYg+oGGbochTu2rfPogjZhQyc=",
-        "type": "file",
-        "url": "https://github.com/NixOS/nixpkgs/pull/188030.patch"
-      },
-      "original": {
-        "type": "file",
-        "url": "https://github.com/NixOS/nixpkgs/pull/188030.patch"
       }
     }
   },

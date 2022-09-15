@@ -7,16 +7,12 @@
 
     # Nixpkgs patching
     nixpkgs-unpatched.url = "github:nixos/nixpkgs/nixos-unstable";
-    pytorch-bin-patch = {
-      url = "https://github.com/NixOS/nixpkgs/compare/f36ab16d7abaf7bda5ead040bf7c1897e546b881...rehno-lindeque:nixpkgs:pytorch-1.12.1.patch";
-      flake = false;
-    };
     torchdata-bin-patch = {
       url = "https://github.com/NixOS/nixpkgs/pull/187779.patch";
       flake = false;
     };
-    torchvision-patch = {
-      url = "https://github.com/NixOS/nixpkgs/pull/188030.patch";
+    segments-ai-patch = {
+      url = "https://github.com/NixOS/nixpkgs/pull/191371.patch";
       flake = false;
     };
     deep-chainmap-patch = {
@@ -73,10 +69,8 @@
       name = "nixpkgs-patched";
       src = self.inputs.nixpkgs-unpatched;
       patches = [
-        self.inputs.pytorch-bin-patch
         self.inputs.deep-chainmap-patch
         self.inputs.torchdata-bin-patch
-        self.inputs.torchvision-patch
       ];
     }).outPath;
 
@@ -129,9 +123,7 @@
           torchdata-nightly-bin
           torchdata-unstable
           torchtext-nightly-bin
-          torchvision
           torchvision-nightly-bin
-          torchvision-bin
           wandb
           yaspin
           ;
