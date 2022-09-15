@@ -3,18 +3,6 @@ let
   pythonOverrides = final: prev: let
     inherit (final.pkgs) fetchFromGitHub;
 
-    # override-torchdata = oldAttrs: {
-    #   src = fetchFromGitHub {
-    #     owner = "pytorch";
-    #     repo = "data";
-    #     # rev = "v${version}";
-    #     rev = "e86cedc5ffd024ea293f541fc77e8a3b4856c8c9"; # git branch release/0.3.0
-    #     sha256 = "sha256:0vyfg7z180w8q6k85v241p1d9gnxq8gdkpvhmykyjf5hnr77cc4z";
-    #   };
-
-    #   doCheck = false; # torchtext test dependency doesn't currently build
-    # };
-
     override-einops = oldAttrs: {
       doCheck = false; # tests are very slow
     };
@@ -42,15 +30,40 @@ let
       doCheck = false; # I'm too lazy to get the tests working for now
     };
   in {
-    albumentations = final.callPackage ./pkgs/albumentations {};
-    amazon-s3-plugin-for-pytorch = final.callPackage flake.inputs.amazon-s3-plugin-for-pytorch {};
-    aravis = final.callPackage ./pkgs/aravis {};
-    darkflow = final.callPackage ./pkgs/darkflow {};
-    deep-chainmap = final.callPackage "${nixpkgs-patched}/pkgs/development/python-modules/deep-chainmap" {};
-    efficientnet-pytorch = final.callPackage ./pkgs/efficientnet-pytorch {};
+    # Regular package overrides
     einops = (final.callPackage ./pkgs/einops {}).overridePythonAttrs override-einops;
+
+    # Based on flake input patches
+    deep-chainmap = final.callPackage "${nixpkgs-patched}/pkgs/development/python-modules/deep-chainmap" {};
+    segments-ai = final.callPackage "${nixpkgs-patched}/pkgs/development/python-modules/segments-ai" {};
+    torchdata-bin = final.callPackage "${nixpkgs-patched}/pkgs/development/python-modules/torchdata/bin.nix" { pytorch = final.pytorch-bin; };
+    types-pillow = final.callPackage "${nixpkgs-patched}/pkgs/development/python-modules/types-pillow" {};
+
+    # Based on flake input files (old)
+    amazon-s3-plugin-for-pytorch = final.callPackage flake.inputs.amazon-s3-plugin-for-pytorch {};
     expecttest = final.callPackage flake.inputs.expecttest {};
     fairseq = (final.callPackage flake.inputs.fairseq {}).overrideAttrs override-fairseq;
+    pytorch-unstable = final.callPackage flake.inputs.pytorch-unstable {
+      cudaSupport = true;
+      # Using the previous pytorch is necessary because pytorch-unstable is defined in terms of pytorch.
+      # That is, this avoids a cycle if the next overlay defines pytorch = pytorch-unstable.
+      inherit (prev) pytorch;
+    };
+    sacrebleu = final.callPackage flake.inputs.sacrebleu {};
+    tensorflow-tensorboard = final.callPackage flake.inputs.tensorflow-tensorboard {};
+    torchaudio = (final.callPackage flake.inputs.torchaudio {}).overridePythonAttrs override-torchaudio;
+    torchdata-unstable = (final.callPackage flake.inputs.torchdata-unstable {
+      pytorch = final.pytorch-nightly-bin;
+      torchaudio = final.torchaudio-nightly-bin;
+      torchtext = final.torchtext-nightly-bin;
+    }).overridePythonAttrs override-torchdata;
+    torchtext = (final.callPackage flake.inputs.torchtext {}).overrideAttrs override-torchtext;
+
+    # Based on local packages (old)
+    albumentations = final.callPackage ./pkgs/albumentations {};
+    aravis = final.callPackage ./pkgs/aravis {};
+    darkflow = final.callPackage ./pkgs/darkflow {};
+    efficientnet-pytorch = final.callPackage ./pkgs/efficientnet-pytorch {};
     ideepcolor = final.callPackage ./pkgs/ideepcolor {};
     imagenet-utils = final.callPackage ./pkgs/imagenet-utils {};
     keras = final.callPackage ./pkgs/keras {};
@@ -61,31 +74,13 @@ let
     openpano = final.callPackage ./pkgs/openpano {};
     pretrainedmodels = final.callPackage ./pkgs/pretrainedmodels {};
     pytorch-nightly-bin = final.callPackage ./pkgs/pytorch/nightly-bin.nix { };
-    pytorch-unstable = final.callPackage flake.inputs.pytorch-unstable {
-      cudaSupport = true;
-      # Using the previous pytorch is necessary because pytorch-unstable is defined in terms of pytorch.
-      # That is, this avoids a cycle if the next overlay defines pytorch = pytorch-unstable.
-      inherit (prev) pytorch;
-    };
     qdarkstyle = final.callPackage ./pkgs/qdarkstyle {};
-    sacrebleu = final.callPackage flake.inputs.sacrebleu {};
     segmentation-models-pytorch = final.callPackage ./pkgs/segmentation-models-pytorch {};
-    segments-ai = final.callPackage "${nixpkgs-patched}/pkgs/development/python-modules/segments-ai" {};
-    tensorflow-tensorboard = final.callPackage flake.inputs.tensorflow-tensorboard {};
     timm = final.callPackage ./pkgs/timm {};
-    torchaudio = (final.callPackage flake.inputs.torchaudio {}).overridePythonAttrs override-torchaudio;
     torchaudio-nightly-bin = final.callPackage ./pkgs/torchaudio/nightly-bin.nix { pytorch = final.pytorch-nightly-bin; };
-    torchdata-bin = final.callPackage "${nixpkgs-patched}/pkgs/development/python-modules/torchdata/bin.nix" { pytorch = final.pytorch-bin; };
     torchdata-nightly-bin = final.callPackage ./pkgs/torchdata/nightly-bin.nix { pytorch = final.pytorch-nightly-bin; };
-    torchdata-unstable = (final.callPackage flake.inputs.torchdata-unstable {
-      pytorch = final.pytorch-nightly-bin;
-      torchaudio = final.torchaudio-nightly-bin;
-      torchtext = final.torchtext-nightly-bin;
-    }).overridePythonAttrs override-torchdata;
-    torchtext = (final.callPackage flake.inputs.torchtext {}).overrideAttrs override-torchtext;
     torchtext-nightly-bin = final.callPackage ./pkgs/torchtext/nightly-bin.nix { pytorch = final.pytorch-nightly-bin; };
     torchvision-nightly-bin = final.callPackage ./pkgs/torchvision/nightly-bin.nix { pytorch = final.pytorch-nightly-bin; };
-    types-pillow = final.callPackage "${nixpkgs-patched}/pkgs/development/python-modules/types-pillow" {};
     wandb = final.callPackage ./pkgs/wandb {};
     yaspin = final.callPackage ./pkgs/yaspin {};
   };
