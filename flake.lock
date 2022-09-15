@@ -118,6 +118,7 @@
         "nixpkgs-unpatched": "nixpkgs-unpatched",
         "pytorch-unstable": "pytorch-unstable",
         "sacrebleu": "sacrebleu",
+        "segments-ai-patch": "segments-ai-patch",
         "tensorflow-tensorboard": "tensorflow-tensorboard",
         "torchaudio": "torchaudio",
         "torchdata-bin-patch": "torchdata-bin-patch",
@@ -135,6 +136,18 @@
       "original": {
         "type": "file",
         "url": "https://raw.githubusercontent.com/NixOS/nixpkgs/64ab7ab9debb6d93311083a735419f837d8d6022/pkgs/development/python-modules/sacrebleu/default.nix"
+      }
+    },
+    "segments-ai-patch": {
+      "flake": false,
+      "locked": {
+        "narHash": "sha256-1N/pUVDcZDyPPtXFL/+25FHxGDneVGZA1CFhsH0IhWw=",
+        "type": "file",
+        "url": "https://github.com/NixOS/nixpkgs/pull/191371.patch"
+      },
+      "original": {
+        "type": "file",
+        "url": "https://github.com/NixOS/nixpkgs/pull/191371.patch"
       }
     },
     "tensorflow-tensorboard": {

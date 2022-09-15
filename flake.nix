@@ -70,6 +70,7 @@
       src = self.inputs.nixpkgs-unpatched;
       patches = [
         self.inputs.deep-chainmap-patch
+        self.inputs.segments-ai-patch
         self.inputs.torchdata-bin-patch
       ];
     }).outPath;
@@ -117,6 +118,7 @@
           pytorch-nightly-bin
           pytorch-unstable
           sacrebleu
+          segments-ai
           tensorflow-tensorboard
           torchaudio-nightly-bin
           torchdata-bin

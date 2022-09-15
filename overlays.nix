@@ -70,6 +70,7 @@ let
     qdarkstyle = final.callPackage ./pkgs/qdarkstyle {};
     sacrebleu = final.callPackage flake.inputs.sacrebleu {};
     segmentation-models-pytorch = final.callPackage ./pkgs/segmentation-models-pytorch {};
+    segments-ai = final.callPackage "${nixpkgs-patched}/pkgs/development/python-modules/segments-ai" {};
     tensorflow-tensorboard = final.callPackage flake.inputs.tensorflow-tensorboard {};
     timm = final.callPackage ./pkgs/timm {};
     torchaudio = (final.callPackage flake.inputs.torchaudio {}).overridePythonAttrs override-torchaudio;
