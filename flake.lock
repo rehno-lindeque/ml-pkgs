@@ -12,6 +12,18 @@
         "url": "https://raw.githubusercontent.com/NixOS/nixpkgs/835b9f2b58277fac67eb96b5ab2d21f2315295e6/pkgs/development/python-modules/amazon-s3-plugin-for-pytorch/default.nix"
       }
     },
+    "deep-chainmap-patch": {
+      "flake": false,
+      "locked": {
+        "narHash": "sha256-3F+HsnDHxAZqeeBZMvwxg98etu8r3zviFjfsfS4Qi1k=",
+        "type": "file",
+        "url": "https://github.com/NixOS/nixpkgs/pull/191374.patch"
+      },
+      "original": {
+        "type": "file",
+        "url": "https://github.com/NixOS/nixpkgs/pull/191374.patch"
+      }
+    },
     "expecttest": {
       "flake": false,
       "locked": {
@@ -109,6 +121,7 @@
     "root": {
       "inputs": {
         "amazon-s3-plugin-for-pytorch": "amazon-s3-plugin-for-pytorch",
+        "deep-chainmap-patch": "deep-chainmap-patch",
         "expecttest": "expecttest",
         "fairseq": "fairseq",
         "flake-utils": "flake-utils",

@@ -46,6 +46,7 @@ let
     amazon-s3-plugin-for-pytorch = final.callPackage flake.inputs.amazon-s3-plugin-for-pytorch {};
     aravis = final.callPackage ./pkgs/aravis {};
     darkflow = final.callPackage ./pkgs/darkflow {};
+    deep-chainmap = final.callPackage "${nixpkgs-patched}/pkgs/development/python-modules/deep-chainmap" {};
     efficientnet-pytorch = final.callPackage ./pkgs/efficientnet-pytorch {};
     einops = (final.callPackage ./pkgs/einops {}).overridePythonAttrs override-einops;
     expecttest = final.callPackage flake.inputs.expecttest {};
