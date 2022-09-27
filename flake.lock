@@ -12,18 +12,6 @@
         "url": "https://raw.githubusercontent.com/NixOS/nixpkgs/835b9f2b58277fac67eb96b5ab2d21f2315295e6/pkgs/development/python-modules/amazon-s3-plugin-for-pytorch/default.nix"
       }
     },
-    "deep-chainmap-patch": {
-      "flake": false,
-      "locked": {
-        "narHash": "sha256-3F+HsnDHxAZqeeBZMvwxg98etu8r3zviFjfsfS4Qi1k=",
-        "type": "file",
-        "url": "https://github.com/NixOS/nixpkgs/pull/191374.patch"
-      },
-      "original": {
-        "type": "file",
-        "url": "https://github.com/NixOS/nixpkgs/pull/191374.patch"
-      }
-    },
     "expecttest": {
       "flake": false,
       "locked": {
@@ -65,11 +53,11 @@
     },
     "nixpkgs": {
       "locked": {
-        "lastModified": 1663087123,
-        "narHash": "sha256-cNIRkF/J4mRxDtNYw+9/fBNq/NOA2nCuPOa3EdIyeDs=",
+        "lastModified": 1664195620,
+        "narHash": "sha256-/0V1a1gAR+QbiQe4aCxBoivhkxss0xyt2mBD6yDrgjw=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "9608ace7009ce5bc3aeb940095e01553e635cbc7",
+        "rev": "62228ccc672ed000f35b1e5c82e4183e46767e52",
         "type": "github"
       },
       "original": {
@@ -81,11 +69,11 @@
     },
     "nixpkgs-unpatched": {
       "locked": {
-        "lastModified": 1663087123,
-        "narHash": "sha256-cNIRkF/J4mRxDtNYw+9/fBNq/NOA2nCuPOa3EdIyeDs=",
+        "lastModified": 1664195620,
+        "narHash": "sha256-/0V1a1gAR+QbiQe4aCxBoivhkxss0xyt2mBD6yDrgjw=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "9608ace7009ce5bc3aeb940095e01553e635cbc7",
+        "rev": "62228ccc672ed000f35b1e5c82e4183e46767e52",
         "type": "github"
       },
       "original": {
@@ -110,7 +98,6 @@
     "root": {
       "inputs": {
         "amazon-s3-plugin-for-pytorch": "amazon-s3-plugin-for-pytorch",
-        "deep-chainmap-patch": "deep-chainmap-patch",
         "expecttest": "expecttest",
         "fairseq": "fairseq",
         "flake-utils": "flake-utils",

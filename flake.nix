@@ -15,10 +15,6 @@
       url = "https://github.com/NixOS/nixpkgs/pull/191371.patch";
       flake = false;
     };
-    deep-chainmap-patch = {
-      url = "https://github.com/NixOS/nixpkgs/pull/191374.patch";
-      flake = false;
-    };
 
     # Nix imports
     amazon-s3-plugin-for-pytorch = {
@@ -69,7 +65,6 @@
       name = "nixpkgs-patched";
       src = self.inputs.nixpkgs-unpatched;
       patches = [
-        self.inputs.deep-chainmap-patch
         self.inputs.segments-ai-patch
         self.inputs.torchdata-bin-patch
       ];
@@ -104,7 +99,6 @@
         inherit
           (pkgs.python3Packages)
           amazon-s3-plugin-for-pytorch
-          deep-chainmap
           efficientnet-pytorch
           einops
           expecttest
@@ -134,6 +128,7 @@
         # albumentations
         # aravis
         # darkflow
+        # deep-chainmap
         # ideepcolor
         # imagenet-utils
         # labelimg
