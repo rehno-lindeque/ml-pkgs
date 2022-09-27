@@ -34,7 +34,6 @@ let
     einops = (final.callPackage ./pkgs/einops {}).overridePythonAttrs override-einops;
 
     # Based on flake input patches
-    deep-chainmap = final.callPackage "${nixpkgs-patched}/pkgs/development/python-modules/deep-chainmap" {};
     segments-ai = final.callPackage "${nixpkgs-patched}/pkgs/development/python-modules/segments-ai" {};
     torchdata-bin = final.callPackage "${nixpkgs-patched}/pkgs/development/python-modules/torchdata/bin.nix" { pytorch = final.pytorch-bin; };
     types-pillow = final.callPackage "${nixpkgs-patched}/pkgs/development/python-modules/types-pillow" {};
