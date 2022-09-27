@@ -15,6 +15,10 @@
       url = "https://github.com/NixOS/nixpkgs/pull/191371.patch";
       flake = false;
     };
+    kornia-patch = {
+      url = "https://github.com/NixOS/nixpkgs/pull/193229.patch";
+      flake = false;
+    };
 
     # Nix imports
     amazon-s3-plugin-for-pytorch = {
@@ -65,6 +69,7 @@
       name = "nixpkgs-patched";
       src = self.inputs.nixpkgs-unpatched;
       patches = [
+        self.inputs.kornia-patch
         self.inputs.segments-ai-patch
         self.inputs.torchdata-bin-patch
       ];

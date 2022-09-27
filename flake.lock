@@ -51,6 +51,18 @@
         "type": "github"
       }
     },
+    "kornia-patch": {
+      "flake": false,
+      "locked": {
+        "narHash": "sha256-JlCjf7O2hMb4jTZOQnQ0PVgor2zbMjXtjgKVblY+zcY=",
+        "type": "file",
+        "url": "https://github.com/NixOS/nixpkgs/pull/193229.patch"
+      },
+      "original": {
+        "type": "file",
+        "url": "https://github.com/NixOS/nixpkgs/pull/193229.patch"
+      }
+    },
     "nixpkgs": {
       "locked": {
         "lastModified": 1664195620,
@@ -101,6 +113,7 @@
         "expecttest": "expecttest",
         "fairseq": "fairseq",
         "flake-utils": "flake-utils",
+        "kornia-patch": "kornia-patch",
         "nixpkgs": "nixpkgs",
         "nixpkgs-unpatched": "nixpkgs-unpatched",
         "pytorch-unstable": "pytorch-unstable",

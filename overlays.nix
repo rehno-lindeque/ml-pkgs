@@ -35,6 +35,7 @@ let
 
     # Based on flake input patches
     segments-ai = final.callPackage "${nixpkgs-patched}/pkgs/development/python-modules/segments-ai" {};
+    kornia = final.callPackage "${nixpkgs-patched}/pkgs/development/python-modules/kornia" {};
     torchdata-bin = final.callPackage "${nixpkgs-patched}/pkgs/development/python-modules/torchdata/bin.nix" { pytorch = final.pytorch-bin; };
     types-pillow = final.callPackage "${nixpkgs-patched}/pkgs/development/python-modules/types-pillow" {};
 
@@ -68,7 +69,6 @@ let
     keras = final.callPackage ./pkgs/keras {};
     keras-resnet = final.callPackage ./pkgs/keras-resnet {};
     keras-retinanet = final.callPackage ./pkgs/keras-retinanet {};
-    kornia = final.callPackage ./pkgs/kornia {};
     labelimg = final.callPackage ./pkgs/labelimg {};
     openpano = final.callPackage ./pkgs/openpano {};
     pretrainedmodels = final.callPackage ./pkgs/pretrainedmodels {};
