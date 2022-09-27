@@ -127,7 +127,6 @@
           torchtext-nightly-bin
           torchvision-nightly-bin
           types-pillow
-          wandb
           yaspin
           ;
 
@@ -144,6 +143,7 @@
         # timm
         # fairseq # doesn't build at the moment due to cmake version
         # torchtext
+        # wandb
       };
     })
     // {
