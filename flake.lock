@@ -54,13 +54,13 @@
     "kornia-patch": {
       "flake": false,
       "locked": {
-        "narHash": "sha256-JlCjf7O2hMb4jTZOQnQ0PVgor2zbMjXtjgKVblY+zcY=",
+        "narHash": "sha256-YbHZwkFfj4owqqzeTDqhniUAF5HdZP3loOsGiaLlbaA=",
         "type": "file",
-        "url": "https://github.com/NixOS/nixpkgs/pull/193229.patch"
+        "url": "https://github.com/NixOS/nixpkgs/pull/193229.diff"
       },
       "original": {
         "type": "file",
-        "url": "https://github.com/NixOS/nixpkgs/pull/193229.patch"
+        "url": "https://github.com/NixOS/nixpkgs/pull/193229.diff"
       }
     },
     "nixpkgs": {
@@ -141,13 +141,13 @@
     "segments-ai-patch": {
       "flake": false,
       "locked": {
-        "narHash": "sha256-1N/pUVDcZDyPPtXFL/+25FHxGDneVGZA1CFhsH0IhWw=",
+        "narHash": "sha256-0uFUxzXbT2psVoxC+k+6hoO8ac8PkgQ7Nv2G4UcdDLE=",
         "type": "file",
-        "url": "https://github.com/NixOS/nixpkgs/pull/191371.patch"
+        "url": "https://github.com/NixOS/nixpkgs/pull/191371.diff"
       },
       "original": {
         "type": "file",
-        "url": "https://github.com/NixOS/nixpkgs/pull/191371.patch"
+        "url": "https://github.com/NixOS/nixpkgs/pull/191371.diff"
       }
     },
     "tensorflow-tensorboard": {
@@ -177,13 +177,13 @@
     "torchdata-bin-patch": {
       "flake": false,
       "locked": {
-        "narHash": "sha256-np+nE9kCDFbEM2Xc6WSlU3h9+8RrK9+ZYIu3Nl9ReEY=",
+        "narHash": "sha256-DTl/3yjcBJ3pNqvz1OKEm2egHik+7U9w/jSTvbnvdW4=",
         "type": "file",
-        "url": "https://github.com/NixOS/nixpkgs/pull/187779.patch"
+        "url": "https://github.com/NixOS/nixpkgs/pull/187779.diff"
       },
       "original": {
         "type": "file",
-        "url": "https://github.com/NixOS/nixpkgs/pull/187779.patch"
+        "url": "https://github.com/NixOS/nixpkgs/pull/187779.diff"
       }
     },
     "torchdata-unstable": {

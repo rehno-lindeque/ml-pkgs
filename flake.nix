@@ -8,15 +8,15 @@
     # Nixpkgs patching
     nixpkgs-unpatched.url = "github:nixos/nixpkgs/nixos-unstable";
     torchdata-bin-patch = {
-      url = "https://github.com/NixOS/nixpkgs/pull/187779.patch";
+      url = "https://github.com/NixOS/nixpkgs/pull/187779.diff";
       flake = false;
     };
     segments-ai-patch = {
-      url = "https://github.com/NixOS/nixpkgs/pull/191371.patch";
+      url = "https://github.com/NixOS/nixpkgs/pull/191371.diff";
       flake = false;
     };
     kornia-patch = {
-      url = "https://github.com/NixOS/nixpkgs/pull/193229.patch";
+      url = "https://github.com/NixOS/nixpkgs/pull/193229.diff";
       flake = false;
     };
 
