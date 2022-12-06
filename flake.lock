@@ -54,7 +54,7 @@
     "kornia-patch": {
       "flake": false,
       "locked": {
-        "narHash": "sha256-YbHZwkFfj4owqqzeTDqhniUAF5HdZP3loOsGiaLlbaA=",
+        "narHash": "sha256-A8D6MfnjsR3d6CLhpIANSP3szAKJAocjm/GC4fa4w2g=",
         "type": "file",
         "url": "https://github.com/NixOS/nixpkgs/pull/193229.diff"
       },
@@ -141,7 +141,7 @@
     "segments-ai-patch": {
       "flake": false,
       "locked": {
-        "narHash": "sha256-0uFUxzXbT2psVoxC+k+6hoO8ac8PkgQ7Nv2G4UcdDLE=",
+        "narHash": "sha256-DIHCitxeaS3lSbI8zVOoC4xwIMIM1qq3/VcOcLyNzuE=",
         "type": "file",
         "url": "https://github.com/NixOS/nixpkgs/pull/191371.diff"
       },
@@ -177,7 +177,7 @@
     "torchdata-bin-patch": {
       "flake": false,
       "locked": {
-        "narHash": "sha256-DTl/3yjcBJ3pNqvz1OKEm2egHik+7U9w/jSTvbnvdW4=",
+        "narHash": "sha256-rJ9QHVj6tSbIg3RFt+VSskOiKldUS9nnGKgUUjqVoQU=",
         "type": "file",
         "url": "https://github.com/NixOS/nixpkgs/pull/187779.diff"
       },
