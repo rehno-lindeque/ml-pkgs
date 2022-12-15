@@ -1,0 +1,62 @@
+diff --git a/pkgs/development/python-modules/kornia/default.nix b/pkgs/development/python-modules/kornia/default.nix
+new file mode 100644
+index 000000000000..a53802a42d53
+--- /dev/null
++++ b/pkgs/development/python-modules/kornia/default.nix
+@@ -0,0 +1,43 @@
++{ buildPythonPackage
++, fetchPypi
++, lib
++, packaging
++, pytestCheckHook
++, pytorch
++}:
++
++buildPythonPackage rec {
++  pname = "kornia";
++  version = "0.6.7";
++
++  src = fetchPypi {
++    inherit pname version;
++    sha256 = "sha256-f/V8kxVRoaFGWqrB+mhCoqrWUPUaD5v2zwsPfW5ftZw=";
++  };
++
++  postPatch = ''
++    substituteInPlace setup.py \
++      --replace "'pytest-runner'" ""
++  '';
++
++  checkInputs = [
++    pytestCheckHook
++  ];
++
++  propagatedBuildInputs = [
++    packaging
++    pytorch
++  ];
++
++  # pytest.ini is not published to pypi
++  doCheck = false;
++
++  pythonImportsCheck = ["kornia"];
++
++  meta = with lib; {
++    description = "Differentiable computer vision library for PyTorch";
++    homepage = "https://kornia.readthedocs.io/";
++    license = licenses.asl20;
++    maintainers = with maintainers; [ rehno-lindeque ];
++  };
++}
+diff --git a/pkgs/top-level/python-packages.nix b/pkgs/top-level/python-packages.nix
+index c9f094990292..ce999cc8919c 100644
+--- a/pkgs/top-level/python-packages.nix
++++ b/pkgs/top-level/python-packages.nix
+@@ -5036,6 +5036,8 @@ in {
+ 
+   korean-lunar-calendar = callPackage ../development/python-modules/korean-lunar-calendar { };
+ 
++  kornia = callPackage ../development/python-modules/kornia { };
++
+   krakenex = callPackage ../development/python-modules/krakenex { };
+ 
+   kubernetes = callPackage ../development/python-modules/kubernetes { };

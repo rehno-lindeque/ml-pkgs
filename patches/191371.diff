@@ -1,0 +1,107 @@
+diff --git a/pkgs/development/python-modules/segments-ai/default.nix b/pkgs/development/python-modules/segments-ai/default.nix
+new file mode 100644
+index 0000000000000..38f0e5ff41e4b
+--- /dev/null
++++ b/pkgs/development/python-modules/segments-ai/default.nix
+@@ -0,0 +1,47 @@
++{ lib
++, buildPythonPackage
++, fetchPypi
++
++# from requirements.txt
++, numpy
++, pillow
++, requests
++, tqdm
++, pydantic
++, typing-extensions
++, types-pillow
++, types-requests
++}:
++
++buildPythonPackage rec {
++  pname = "segments-ai";
++  version = "1.0.5";
++
++  src = fetchPypi {
++    inherit pname version;
++    sha256 = "sha256-Bd9oKWs+iT4otezQ+VSh3rfv+pDrRME2QIyehPaLWgM=";
++  };
++
++  propagatedBuildInputs = [
++    numpy
++    pillow
++    requests
++    tqdm
++    pydantic
++    typing-extensions
++    types-pillow
++    types-requests
++  ];
++
++  # tests are not published to pypi
++  doCheck = false;
++
++  pythonImportsCheck = [ "segments" ];
++
++  meta = with lib; {
++    description = "A training data platform for computer vision engineers and labeling teams";
++    homepage = "https://github.com/segments-ai/segments-ai";
++    license = licenses.mit;
++    maintainers = with maintainers; [ rehno-lindeque ];
++  };
++}
+diff --git a/pkgs/development/python-modules/types-pillow/default.nix b/pkgs/development/python-modules/types-pillow/default.nix
+new file mode 100644
+index 0000000000000..62b84d6ca8452
+--- /dev/null
++++ b/pkgs/development/python-modules/types-pillow/default.nix
+@@ -0,0 +1,26 @@
++{ lib
++, buildPythonPackage
++, fetchPypi
++}:
++
++buildPythonPackage rec {
++  pname = "types-pillow";
++  version = "9.2.0";
++
++  src = fetchPypi {
++    pname = "types-Pillow";
++    inherit version;
++    sha256 = "sha256-aCOFHhedzBV0JBdbXcDhIEsclJ4d4yQX/y+/p+PT9Fs=";
++  };
++
++  pythonImportsCheck = [
++    "PIL-stubs"
++  ];
++
++  meta = with lib; {
++    description = "Typing stubs for Pillow";
++    homepage = "https://github.com/python/typeshed";
++    license = licenses.asl20;
++    maintainers = with maintainers; [ rehno-lindeque ];
++  };
++}
+diff --git a/pkgs/top-level/python-packages.nix b/pkgs/top-level/python-packages.nix
+index 63218f7292145..7da1747dd151c 100644
+--- a/pkgs/top-level/python-packages.nix
++++ b/pkgs/top-level/python-packages.nix
+@@ -9927,6 +9927,8 @@ in {
+ 
+   segments = callPackage ../development/python-modules/segments { };
+ 
++  segments-ai = callPackage ../development/python-modules/segments-ai { };
++
+   segno = callPackage ../development/python-modules/segno { };
+ 
+   segyio = toPythonModule (callPackage ../development/python-modules/segyio {
+@@ -11233,6 +11235,8 @@ in {
+ 
+   types-ipaddress = callPackage ../development/python-modules/types-ipaddress { };
+ 
++  types-pillow = callPackage ../development/python-modules/types-pillow { };
++
+   types-protobuf = callPackage ../development/python-modules/types-protobuf { };
+ 
+   types-pytz = callPackage ../development/python-modules/types-pytz { };

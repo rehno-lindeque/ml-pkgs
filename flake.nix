@@ -7,18 +7,21 @@
 
     # Nixpkgs patching
     nixpkgs-unpatched.url = "github:nixos/nixpkgs/nixos-unstable";
-    torchdata-bin-patch = {
-      url = "https://github.com/NixOS/nixpkgs/pull/187779.diff";
-      flake = false;
-    };
-    segments-ai-patch = {
-      url = "https://github.com/NixOS/nixpkgs/pull/191371.diff";
-      flake = false;
-    };
-    kornia-patch = {
-      url = "https://github.com/NixOS/nixpkgs/pull/193229.diff";
-      flake = false;
-    };
+    # kornia-patch = {
+    #   url = "path:patches/193229.diff";
+    #   url = "https://github.com/NixOS/nixpkgs/pull/193229.diff";
+    #   flake = false;
+    # };
+    # segments-ai-patch = {
+    #   url = "path:patches/191371.diff";
+    #   url = "https://github.com/NixOS/nixpkgs/pull/191371.diff";
+    #   flake = false;
+    # };
+    # torchdata-bin-patch = {
+    #   url = "path:patches/187779.diff";
+    #   url = "https://github.com/NixOS/nixpkgs/pull/187779.diff";
+    #   flake = false;
+    # };
 
     # Nix imports
     amazon-s3-plugin-for-pytorch = {
@@ -69,9 +72,12 @@
       name = "nixpkgs-patched";
       src = self.inputs.nixpkgs-unpatched;
       patches = [
-        self.inputs.kornia-patch
-        self.inputs.segments-ai-patch
-        self.inputs.torchdata-bin-patch
+        ./patches/193229.diff # kornia-patch
+        ./patches/191371.diff # segments-ai-patch
+        ./patches/187779.diff # torchdata-bin-patch
+        # self.inputs.kornia-patch
+        # self.inputs.segments-ai-patch
+        # self.inputs.torchdata-bin-patch
       ];
     }).outPath;
 

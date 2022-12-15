@@ -51,18 +51,6 @@
         "type": "github"
       }
     },
-    "kornia-patch": {
-      "flake": false,
-      "locked": {
-        "narHash": "sha256-A8D6MfnjsR3d6CLhpIANSP3szAKJAocjm/GC4fa4w2g=",
-        "type": "file",
-        "url": "https://github.com/NixOS/nixpkgs/pull/193229.diff"
-      },
-      "original": {
-        "type": "file",
-        "url": "https://github.com/NixOS/nixpkgs/pull/193229.diff"
-      }
-    },
     "nixpkgs": {
       "locked": {
         "lastModified": 1664195620,
@@ -113,15 +101,12 @@
         "expecttest": "expecttest",
         "fairseq": "fairseq",
         "flake-utils": "flake-utils",
-        "kornia-patch": "kornia-patch",
         "nixpkgs": "nixpkgs",
         "nixpkgs-unpatched": "nixpkgs-unpatched",
         "pytorch-unstable": "pytorch-unstable",
         "sacrebleu": "sacrebleu",
-        "segments-ai-patch": "segments-ai-patch",
         "tensorflow-tensorboard": "tensorflow-tensorboard",
         "torchaudio": "torchaudio",
-        "torchdata-bin-patch": "torchdata-bin-patch",
         "torchdata-unstable": "torchdata-unstable",
         "torchtext": "torchtext"
       }
@@ -136,18 +121,6 @@
       "original": {
         "type": "file",
         "url": "https://raw.githubusercontent.com/NixOS/nixpkgs/64ab7ab9debb6d93311083a735419f837d8d6022/pkgs/development/python-modules/sacrebleu/default.nix"
-      }
-    },
-    "segments-ai-patch": {
-      "flake": false,
-      "locked": {
-        "narHash": "sha256-DIHCitxeaS3lSbI8zVOoC4xwIMIM1qq3/VcOcLyNzuE=",
-        "type": "file",
-        "url": "https://github.com/NixOS/nixpkgs/pull/191371.diff"
-      },
-      "original": {
-        "type": "file",
-        "url": "https://github.com/NixOS/nixpkgs/pull/191371.diff"
       }
     },
     "tensorflow-tensorboard": {
@@ -172,18 +145,6 @@
       "original": {
         "type": "file",
         "url": "https://raw.githubusercontent.com/NixOS/nixpkgs/ffe409095cfcec679fe0f0a97db6adb4c0c6d32d/pkgs/development/python-modules/torchaudio/default.nix"
-      }
-    },
-    "torchdata-bin-patch": {
-      "flake": false,
-      "locked": {
-        "narHash": "sha256-rJ9QHVj6tSbIg3RFt+VSskOiKldUS9nnGKgUUjqVoQU=",
-        "type": "file",
-        "url": "https://github.com/NixOS/nixpkgs/pull/187779.diff"
-      },
-      "original": {
-        "type": "file",
-        "url": "https://github.com/NixOS/nixpkgs/pull/187779.diff"
       }
     },
     "torchdata-unstable": {

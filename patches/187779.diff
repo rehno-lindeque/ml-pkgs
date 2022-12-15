@@ -1,0 +1,210 @@
+diff --git a/pkgs/development/python-modules/torchdata/bin.nix b/pkgs/development/python-modules/torchdata/bin.nix
+new file mode 100644
+index 000000000000..0b9d2b37a44e
+--- /dev/null
++++ b/pkgs/development/python-modules/torchdata/bin.nix
+@@ -0,0 +1,66 @@
++{ lib
++, buildPythonPackage
++, fetchurl
++, python
++, stdenv
++
++# Native build inputs
++, patchelf
++
++# Propagated build inputs
++, portalocker
++, pytorch
++, requests
++, urllib3
++, zlib
++
++# Python version
++, pythonOlder
++, pythonAtLeast
++}:
++
++buildPythonPackage rec {
++  pname = "torchdata";
++  version = "0.4.1";
++  format = "wheel";
++
++  src =
++    let
++      pyVerNoDot = lib.replaceStrings [ "." ] [ "" ] python.pythonVersion;
++      unsupported = throw "Unsupported system ${stdenv.system}-${pyVerNoDot}";
++      srcUrl = (import ./binary-hashes.nix version)."${stdenv.system}-${pyVerNoDot}" or unsupported;
++    in
++      fetchurl srcUrl;
++
++  disabled = pythonOlder "3.7" || pythonAtLeast "3.11";
++
++  nativeBuildInputs = [
++    patchelf
++  ];
++
++  propagatedBuildInputs = [
++    pytorch
++    requests
++    portalocker
++    urllib3
++  ];
++
++  postFixup = let
++    rpath = lib.makeLibraryPath [ stdenv.cc.cc.lib zlib ];
++  in ''
++    find $out/${python.sitePackages}/torchdata -type f \( -name '*.so' -or -name '*.so.*' \) | while read lib; do
++      echo "setting rpath for $lib..."
++      patchelf --set-rpath "${rpath}:$out/${python.sitePackages}/torch/lib" "$lib"
++    done
++  '';
++
++
++  pythonImportsCheck = [ "torchdata" ];
++
++  meta = with lib; {
++    description = "A PyTorch repo for data loading and utilities to be shared by the PyTorch domain libraries.";
++    homepage = "github.com/pytorch/data";
++    license = licenses.bsd3;
++    maintainers = with maintainers; [  ];
++  };
++}
+diff --git a/pkgs/development/python-modules/torchdata/binary-hashes.nix b/pkgs/development/python-modules/torchdata/binary-hashes.nix
+new file mode 100644
+index 000000000000..4ad6f48eb2cd
+--- /dev/null
++++ b/pkgs/development/python-modules/torchdata/binary-hashes.nix
+@@ -0,0 +1,66 @@
++# Warning: Need to update at the same time as pytorch-bin
++#
++# Precompiled wheels can be found at:
++# https://pypi.org/project/torchdata/#files
++
++# To add a new version, run "prefetch.sh 'new-version'" to paste the generated file as follows.
++
++version : builtins.getAttr version {
++  "0.4.1" = {
++    x86_64-linux-37 = {
++      name = "torchdata-0.4.1-cp37-cp37m-linux_x86_64.whl";
++      url = "https://files.pythonhosted.org/packages/cp37/t/torchdata/torchdata-0.4.1-cp37-cp37m-manylinux_2_17_x86_64.manylinux2014_x86_64.whl";
++      hash = "sha256-RCuu0lDggkX/9JLTYtefjbZ5bvzbbrXsXzFnqGDwqGs=";
++    };
++    x86_64-linux-38 = {
++      name = "torchdata-0.4.1-cp38-cp38-linux_x86_64.whl";
++      url = "https://files.pythonhosted.org/packages/cp38/t/torchdata/torchdata-0.4.1-cp38-cp38-manylinux_2_17_x86_64.manylinux2014_x86_64.whl";
++      hash = "sha256-+rqP6uZo2fK9klNIAkqui3n3TBhcmQCPX0xN5a587mc=";
++    };
++    x86_64-linux-39 = {
++      name = "torchdata-0.4.1-cp39-cp39-linux_x86_64.whl";
++      url = "https://files.pythonhosted.org/packages/cp39/t/torchdata/torchdata-0.4.1-cp39-cp39-manylinux_2_17_x86_64.manylinux2014_x86_64.whl";
++      hash = "sha256-QEhKqs1+rz56bwRkSyMjjKVgu0mf4ta2x20UguY00DM=";
++    };
++    x86_64-linux-310 = {
++      name = "torchdata-0.4.1-cp310-cp310-linux_x86_64.whl";
++      url = "https://files.pythonhosted.org/packages/cp310/t/torchdata/torchdata-0.4.1-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl";
++      hash = "sha256-HclqlVhvmab8cki6LqEIqfbKVVqoDMWDC8NKcgHpLyY=";
++    };
++    x86_64-darwin-37 = {
++      name = "torchdata-0.4.1-cp37-cp37m-macosx_10_13_x86_64.whl";
++      url = "https://files.pythonhosted.org/packages/cp37/t/torchdata/torchdata-0.4.1-cp37-cp37m-macosx_10_13_x86_64.whl";
++      hash = "sha256-y0Aa8c0nAi5//goXOy9Fpvv4Ff+mHYKkthd4T6I3Ep4=";
++    };
++    x86_64-darwin-38 = {
++      name = "torchdata-0.4.1-cp38-cp38-macosx_10_13_x86_64.whl";
++      url = "https://files.pythonhosted.org/packages/cp38/t/torchdata/torchdata-0.4.1-cp38-cp38-macosx_10_13_x86_64.whl";
++      hash = "sha256-wJLjKzYg/FpjOcTkx43wdASo3RpSrl8kiboSANgYfrM=";
++    };
++    x86_64-darwin-39 = {
++      name = "torchdata-0.4.1-cp39-cp39-macosx_10_13_x86_64.whl";
++      url = "https://files.pythonhosted.org/packages/cp39/t/torchdata/torchdata-0.4.1-cp39-cp39-macosx_10_13_x86_64.whl";
++      hash = "sha256-RFzqXYoiHaXFlZ27GtftA08h0iOlggovhnYZGjnd6ZY=";
++    };
++    x86_64-darwin-310 = {
++      name = "torchdata-0.4.1-cp310-cp310-macosx_10_13_x86_64.whl";
++      url = "https://files.pythonhosted.org/packages/cp310/t/torchdata/torchdata-0.4.1-cp310-cp310-macosx_10_13_x86_64.whl";
++      hash = "sha256-zwmN/906LWrgxIxP7Fg3IemxwgviWrQB4AeFJqd9mVo=";
++    };
++    aarch64-darwin-38 = {
++      name = "torchdata-0.4.1-cp38-cp38-macosx_11_0_arm64.whl";
++      url = "https://files.pythonhosted.org/packages/cp38/t/torchdata/torchdata-0.4.1-cp38-cp38-macosx_11_0_arm64.whl";
++      hash = "sha256-9V6TU3qVE+D1oj/kvRQmL80w4+3XUaOO+GuuQ1rmtHk=";
++    };
++    aarch64-darwin-39 = {
++      name = "torchdata-0.4.1-cp39-cp39-macosx_11_0_arm64.whl";
++      url = "https://files.pythonhosted.org/packages/cp39/t/torchdata/torchdata-0.4.1-cp39-cp39-macosx_11_0_arm64.whl";
++      hash = "sha256-Mqy1eKfQGj07ou2upiG/NTT2pFGKOfyYKoXYLiW2n/c=";
++    };
++    aarch64-darwin-310 = {
++      name = "torchdata-0.4.1-cp310-cp310-macosx_11_0_arm64.whl";
++      url = "https://files.pythonhosted.org/packages/cp310/t/torchdata/torchdata-0.4.1-cp310-cp310-macosx_11_0_arm64.whl";
++      hash = "sha256-mVcnqbWHF54mHkUUR7sdVvlbtahdP7AR24895+GHRmw=";
++    };
++  };
++}
+diff --git a/pkgs/development/python-modules/torchdata/prefetch.sh b/pkgs/development/python-modules/torchdata/prefetch.sh
+new file mode 100755
+index 000000000000..7dc9408610e5
+--- /dev/null
++++ b/pkgs/development/python-modules/torchdata/prefetch.sh
+@@ -0,0 +1,47 @@
++#!/usr/bin/env nix-shell
++#!nix-shell -i bash -p nix-prefetch-scripts
++
++set -eou pipefail
++
++version=$1
++
++bucket="https://files.pythonhosted.org/packages"
++
++url_and_key_list=(
++  "x86_64-linux-37 $bucket/cp37/t/torchdata/torchdata-${version}-cp37-cp37m-manylinux_2_17_x86_64.manylinux2014_x86_64.whl torchdata-${version}-cp37-cp37m-linux_x86_64.whl"
++  "x86_64-linux-38 $bucket/cp38/t/torchdata/torchdata-${version}-cp38-cp38-manylinux_2_17_x86_64.manylinux2014_x86_64.whl torchdata-${version}-cp38-cp38-linux_x86_64.whl"
++  "x86_64-linux-39 $bucket/cp39/t/torchdata/torchdata-${version}-cp39-cp39-manylinux_2_17_x86_64.manylinux2014_x86_64.whl torchdata-${version}-cp39-cp39-linux_x86_64.whl"
++  "x86_64-linux-310 $bucket/cp310/t/torchdata/torchdata-${version}-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl torchdata-${version}-cp310-cp310-linux_x86_64.whl"
++
++  "x86_64-darwin-37 $bucket/cp37/t/torchdata/torchdata-${version}-cp37-cp37m-macosx_10_13_x86_64.whl torchdata-${version}-cp37-cp37m-macosx_10_13_x86_64.whl"
++  "x86_64-darwin-38 $bucket/cp38/t/torchdata/torchdata-${version}-cp38-cp38-macosx_10_13_x86_64.whl torchdata-${version}-cp38-cp38-macosx_10_13_x86_64.whl"
++  "x86_64-darwin-39 $bucket/cp39/t/torchdata/torchdata-${version}-cp39-cp39-macosx_10_13_x86_64.whl torchdata-${version}-cp39-cp39-macosx_10_13_x86_64.whl"
++  "x86_64-darwin-310 $bucket/cp310/t/torchdata/torchdata-${version}-cp310-cp310-macosx_10_13_x86_64.whl torchdata-${version}-cp310-cp310-macosx_10_13_x86_64.whl"
++
++  "aarch64-darwin-38 $bucket/cp38/t/torchdata/torchdata-${version}-cp38-cp38-macosx_11_0_arm64.whl torchdata-${version}-cp38-cp38-macosx_11_0_arm64.whl"
++  "aarch64-darwin-39 $bucket/cp39/t/torchdata/torchdata-${version}-cp39-cp39-macosx_11_0_arm64.whl torchdata-${version}-cp39-cp39-macosx_11_0_arm64.whl"
++  "aarch64-darwin-310 $bucket/cp310/t/torchdata/torchdata-${version}-cp310-cp310-macosx_11_0_arm64.whl torchdata-${version}-cp310-cp310-macosx_11_0_arm64.whl"
++)
++
++hashfile=binary-hashes-"$version".nix
++echo "  \"$version\" = {" >> $hashfile
++
++for url_and_key in "${url_and_key_list[@]}"; do
++  key=$(echo "$url_and_key" | cut -d' ' -f1)
++  url=$(echo "$url_and_key" | cut -d' ' -f2)
++  name=$(echo "$url_and_key" | cut -d' ' -f3)
++
++  echo "prefetching ${url}..."
++  hash=$(nix hash to-sri --type sha256 `nix-prefetch-url "$url" --name "$name"`)
++
++  echo "    $key = {" >> $hashfile
++  echo "      name = \"$name\";" >> $hashfile
++  echo "      url = \"$url\";" >> $hashfile
++  echo "      hash = \"$hash\";" >> $hashfile
++  echo "    };" >> $hashfile
++
++  echo
++done
++
++echo "  };" >> $hashfile
++echo "done."
+diff --git a/pkgs/top-level/python-packages.nix b/pkgs/top-level/python-packages.nix
+index ec657aca004e..f561c7b64623 100644
+--- a/pkgs/top-level/python-packages.nix
++++ b/pkgs/top-level/python-packages.nix
+@@ -10826,6 +10826,8 @@ in {
+ 
+   torchaudio-bin = callPackage ../development/python-modules/torchaudio/bin.nix { };
+ 
++  torchdata-bin = callPackage ../development/python-modules/torchdata/bin.nix { };
++
+   torchgpipe = callPackage ../development/python-modules/torchgpipe { };
+ 
+   torchmetrics = callPackage ../development/python-modules/torchmetrics { };
