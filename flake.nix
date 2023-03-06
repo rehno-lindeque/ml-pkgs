@@ -72,7 +72,7 @@
       name = "nixpkgs-patched";
       src = self.inputs.nixpkgs-unpatched;
       patches = [
-        ./patches/193229.diff # kornia-patch
+        ./patches/219854.diff # kornia-patch
         ./patches/191371.diff # segments-ai-patch
         ./patches/187779.diff # torchdata-bin-patch
         # self.inputs.kornia-patch
